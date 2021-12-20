@@ -1,0 +1,24 @@
+{
+  "timeZone": "Europe/Paris",
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
+  "dependencies": {
+    "libraries": [
+      {
+        "userSymbol": "QUnitGS2",
+        "libraryId": "1tXPhZmIyYiA_EMpTRJw0QpVGT5Pdb02PpOHCi9A9FFidblOc9CY_VLgG",
+        "version": "23"
+      },
+      {
+        "userSymbol": "WealthLedger",
+        "version": "0",
+        "libraryId": "116x8ESc9JU9u7PMamS9T8B2fwuIAw9VGFQz0QCpcu1JG6MpMI0ykBNX5",
+        "developmentMode": true
+      }
+    ]
+  },
+  "webapp": {
+    "executeAs": "USER_DEPLOYING",
+    "access": "MYSELF"
+  }
+}
