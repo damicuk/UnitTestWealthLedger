@@ -29,7 +29,8 @@ const TESTS_ = [
   // processLedgerUKBasic,
   // processLedgerUKBasic2,
   // processLedgerUKRules,
-  // processLedgerUKRulesAdvanced,
+  // processLedgerUKRules2,
+  // processLedgerUKRules3,
   // processLedgerUKTrade,
   // processLedgerUKTradeZeroAmount,
   // processLedgerUKTradeZeroExRate,
@@ -40,8 +41,8 @@ const TESTS_ = [
   // processLedgerUKSplit,
   // processLedgerUKSplitExecutionOrder,
 
-  testAssetTracker
-  // testAsset
+  // testAssetTracker,
+  // testAsset,
 
 ];
 

@@ -93,7 +93,7 @@ function processLedgerUKError() {
     new LedgerRecord(new Date(2020, 3, 1), 'Split', 'LMN', '', 2000, '', '', '', '', '', '', '', '')
   ];
 
-  sampleError = new Error(`Insufficient funds: Attempted to subtract LMN 2000 from balance of LMN 0`);
+  sampleError = new Error(`Insufficient funds: Attempted to subtract LMN 2000 from balance of LMN 0.`);
 
   testProcessLedgerUKError('Insufficient funds split subtraction from zero balance', assetRecords, ledgerRecords, sampleError);
 
@@ -107,7 +107,7 @@ function processLedgerUKError() {
     new LedgerRecord(new Date(2020, 3, 1), 'Split', 'LMN', '', 2000, '', '', '', '', '', '', '', '')
   ];
 
-  sampleError = new Error(`Insufficient funds: Attempted to subtract LMN 2000 from balance of LMN 1000`);
+  sampleError = new Error(`Insufficient funds: Attempted to subtract LMN 2000 from balance of LMN 1000.`);
 
   testProcessLedgerUKError('Insufficient funds split subtraction from positive balance', assetRecords, ledgerRecords, sampleError);
 }
@@ -780,6 +780,25 @@ function processLedgerUKRules() {
   ];
 
   testProcessLedgerUK('Gift given 31 days merged pool', assetRecords, ledgerRecords, lmn, poolDeposits, closedPoolLots);
+}
+
+function processLedgerUKRules2() {
+
+  QUnit.module('Process Ledger UK Rules 2');
+
+  let ledgerRecords;
+  let poolDeposits;
+  let closedPoolLots;
+
+  let assetRecords = [
+    new AssetRecord('GBP', 'Fiat Base', 2, 1, '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, 1, '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+  ];
+
+  let gbp = new Asset('GBP', 'Fiat', true, 2, 2);
+  let ada = new Asset('ADA', 'Crypto', false, 6, 3);
+  let lmn = new Asset('LMN', 'Stock', false, 0, 4);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'GBP', '', 1990, 10, 'IB', 'LMN', '', 1010, 10, '', ''),
@@ -822,25 +841,6 @@ function processLedgerUKRules() {
   ];
 
   testProcessLedgerUK('Same day sell and donation trades not merged', assetRecords, ledgerRecords, lmn, poolDeposits, closedPoolLots);
-}
-
-function processLedgerUKRulesAdvanced() {
-
-  QUnit.module('Process Ledger UK Rules');
-
-  let ledgerRecords;
-  let poolDeposits;
-  let closedPoolLots;
-
-  let assetRecords = [
-    new AssetRecord('GBP', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
-  ];
-
-  let gbp = new Asset('GBP', 'Fiat', true, 2, 2);
-  let ada = new Asset('ADA', 'Crypto', false, 6, 3);
-  let lmn = new Asset('LMN', 'Stock', false, 0, 4);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'GBP', '', 1990, 10, 'IB', 'LMN', '', 1010, 10, '', ''),
@@ -1016,6 +1016,23 @@ function processLedgerUKRulesAdvanced() {
   ];
 
   testProcessLedgerUK('Gift received no 30 day rule', assetRecords, ledgerRecords, ada, poolDeposits, closedPoolLots);
+}
+
+function processLedgerUKRules3() {
+
+  QUnit.module('Process Ledger UK Rules 3');
+
+  let ledgerRecords;
+  let poolDeposits;
+  let closedPoolLots;
+
+  let assetRecords = [
+    new AssetRecord('GBP', 'Fiat Base', 2, 1, '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, 1, '', '', '')
+  ];
+
+  let gbp = new Asset('GBP', 'Fiat', true, 2, 2);
+  let ada = new Asset('ADA', 'Crypto', false, 6, 3);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'GBP', '', 1590, 10, 'Kraken', 'ADA', '', 810, 10, '', ''),
