@@ -15,36 +15,6 @@ function testAssetTracker() {
 
   });
 
-  QUnit.test('Dates', function (assert) {
-
-    let date1;
-    let date2;
-    let midnight1;
-    let midnight2;
-    let diffDays;
-
-    date1 = new Date("2020-02-01T22:59:00Z"); //european winter time
-    date2 = new Date("2020-02-01T23:01:00Z");
-    midnight1 = AssetTracker.getMidnight(date1, 'Europe/Paris');
-    midnight2 = AssetTracker.getMidnight(date2, 'Europe/Paris');
-    diffDays = AssetTracker.diffDays(midnight1, midnight2);
-
-    assert.equal(QUnit.equiv(midnight1, new Date("2020-01-31T23:00:00Z")), true, 'Get midnight - 1 min European Winter Time');
-    assert.equal(QUnit.equiv(midnight2, new Date("2020-02-01T23:00:00Z")), true, 'Get midnight + 1 min European Winter Time');
-    assert.equal(diffDays, 1, 'Diff days 1 European Winter Time');
-
-    date1 = new Date("2020-05-01T21:59:00Z"); //european summer time
-    date2 = new Date("2020-05-01T22:01:00Z");
-    midnight1 = AssetTracker.getMidnight(date1, 'Europe/Paris');
-    midnight2 = AssetTracker.getMidnight(date2, 'Europe/Paris');
-    diffDays = AssetTracker.diffDays(midnight1, midnight2);
-
-    assert.equal(QUnit.equiv(midnight1, new Date("2020-04-30T22:00:00Z")), true, 'Get midnight - 1 min European Summer Time');
-    assert.equal(QUnit.equiv(midnight2, new Date("2020-05-01T22:00:00Z")), true, 'Get midnight + 1 min European Summer Time');
-    assert.equal(diffDays, 1, 'Diff days 1 European Summer Time');
-
-  });
-
   QUnit.test('Apportion Integer', function (assert) {
 
     let integerArray;

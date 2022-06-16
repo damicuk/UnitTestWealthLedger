@@ -88,7 +88,7 @@ function processLedgerAssetAccountError() {
     new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', '', 1000, 10, 'Kraken', 'USD', '', 1200, '', '', ''),
   ];
 
-  assetAccountError = new AssetAccountError(`Ledger row 3: Attempted to withdraw ADA 1000 + fee 10 from Kraken balance of 0`, 3, 'debitAmount');
+  assetAccountError = new AssetAccountError(`Ledger row 3: Attempted to withdraw ADA 1000 + fee 10 from Kraken balance of 0.`, 3, 'debitAmount');
 
   testProcessLedgerAssetAccountError('Insufficient funds withdraw with fee from zero balance', assetRecords, ledgerRecords, assetAccountError);
 
@@ -97,7 +97,7 @@ function processLedgerAssetAccountError() {
     new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', '', 1200, 10, 'Kraken', 'USD', '', 1200, '', '', ''),
   ];
 
-  assetAccountError = new AssetAccountError(`Ledger row 4: Attempted to withdraw ADA 1200 + fee 10 from Kraken balance of 1000`, 4, 'debitAmount');
+  assetAccountError = new AssetAccountError(`Ledger row 4: Attempted to withdraw ADA 1200 + fee 10 from Kraken balance of 1000.`, 4, 'debitAmount');
 
   testProcessLedgerAssetAccountError('Insufficient funds withdraw with fee from positive balance', assetRecords, ledgerRecords, assetAccountError);
 
@@ -105,7 +105,7 @@ function processLedgerAssetAccountError() {
     new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', '', 1000, '', 'Kraken', 'USD', '', 1200, '', '', ''),
   ];
 
-  assetAccountError = new AssetAccountError(`Ledger row 3: Attempted to withdraw ADA 1000 + fee 0 from Kraken balance of 0`, 3, 'debitAmount');
+  assetAccountError = new AssetAccountError(`Ledger row 3: Attempted to withdraw ADA 1000 + fee 0 from Kraken balance of 0.`, 3, 'debitAmount');
 
   testProcessLedgerAssetAccountError('Insufficient funds withdraw no fee from zero balance', assetRecords, ledgerRecords, assetAccountError);
 
@@ -114,9 +114,26 @@ function processLedgerAssetAccountError() {
     new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', '', 1200, '', 'Kraken', 'USD', '', 1200, '', '', ''),
   ];
 
-  assetAccountError = new AssetAccountError(`Ledger row 4: Attempted to withdraw ADA 1200 + fee 0 from Kraken balance of 1000`, 4, 'debitAmount');
+  assetAccountError = new AssetAccountError(`Ledger row 4: Attempted to withdraw ADA 1200 + fee 0 from Kraken balance of 1000.`, 4, 'debitAmount');
 
   testProcessLedgerAssetAccountError('Insufficient funds withdraw no fee from positive balance', assetRecords, ledgerRecords, assetAccountError);
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', '', 10, 'Kraken', '', '', '', '', '', ''),
+  ];
+
+  assetAccountError = new AssetAccountError(`Ledger row 3: Attempted to withdraw fee ADA 10 from Kraken balance of 0.`, 3, 'debitFee');
+
+  testProcessLedgerAssetAccountError('Insufficient funds withdraw fee from zero balance', assetRecords, ledgerRecords, assetAccountError);
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 12, '', 'Kraken', 'ADA', '', 10, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', '', 12, 'Kraken', '', '', '', '', '', ''),
+  ];
+
+  assetAccountError = new AssetAccountError(`Ledger row 4: Attempted to withdraw fee ADA 12 from Kraken balance of 10.`, 4, 'debitFee');
+
+  testProcessLedgerAssetAccountError('Insufficient funds withdraw fee from positive balance', assetRecords, ledgerRecords, assetAccountError);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 3), 'Income', 'LMN', '', '', '', '', 'USD', '', 1000, '', 'IB', '')
@@ -130,7 +147,7 @@ function processLedgerAssetAccountError() {
     new LedgerRecord(new Date(2020, 3, 3), 'Split', 'LMN', '', 500, '', 'IB', '', '', '', '', '', '')
   ];
 
-  assetAccountError = new AssetAccountError(`Split row 3: Attempted to subtract LMN 500 from IB balance of 0`, 3, 'debitAmount');
+  assetAccountError = new AssetAccountError(`Split row 3: Attempted to subtract LMN 500 from IB balance of 0.`, 3, 'debitAmount');
 
   testProcessLedgerAssetAccountError('Insufficient funds split subtraction with wallet zero balance', assetRecords, ledgerRecords, assetAccountError);
 
@@ -139,7 +156,7 @@ function processLedgerAssetAccountError() {
     new LedgerRecord(new Date(2020, 3, 3), 'Split', 'LMN', '', 1500, '', 'IB', '', '', '', '', '', '')
   ];
 
-  assetAccountError = new AssetAccountError(`Split row 4: Attempted to subtract LMN 1500 from IB balance of 1000`, 4, 'debitAmount');
+  assetAccountError = new AssetAccountError(`Split row 4: Attempted to subtract LMN 1500 from IB balance of 1000.`, 4, 'debitAmount');
 
   testProcessLedgerAssetAccountError('Insufficient funds split subtraction with wallet positive balance', assetRecords, ledgerRecords, assetAccountError);
 
@@ -147,7 +164,7 @@ function processLedgerAssetAccountError() {
     new LedgerRecord(new Date(2020, 3, 3), 'Split', 'LMN', '', 500, '', '', '', '', '', '', '', '')
   ];
 
-  assetAccountError = new AssetAccountError(`Split row 3: Attempted to subtract LMN 500 from balance of 0`, 3, 'debitAmount');
+  assetAccountError = new AssetAccountError(`Split row 3: Attempted to subtract LMN 500 from balance of 0.`, 3, 'debitAmount');
 
   testProcessLedgerAssetAccountError('Insufficient funds split subtraction no wallet zero balance', assetRecords, ledgerRecords, assetAccountError);
 
@@ -156,7 +173,7 @@ function processLedgerAssetAccountError() {
     new LedgerRecord(new Date(2020, 3, 3), 'Split', 'LMN', '', 1500, '', '', '', '', '', '', '', '')
   ];
 
-  assetAccountError = new AssetAccountError(`Split row 4: Attempted to subtract LMN 1500 from balance of 1000`, 4, 'debitAmount');
+  assetAccountError = new AssetAccountError(`Split row 4: Attempted to subtract LMN 1500 from balance of 1000.`, 4, 'debitAmount');
 
   testProcessLedgerAssetAccountError('Insufficient funds split subtraction no wallet positive balance', assetRecords, ledgerRecords, assetAccountError);
 }
