@@ -25,22 +25,6 @@ const TESTS_ = [
   // processLedgerFee,
   // processLedgerSplit,
 
-  // processLedgerUKError,
-  // processLedgerUKBasic,
-  // processLedgerUKBasic2,
-  // processLedgerUKRules,
-  // processLedgerUKRules2,
-  // processLedgerUKRules3,
-  // processLedgerUKTrade,
-  // processLedgerUKTradeZeroAmount,
-  // processLedgerUKTradeZeroExRate,
-  // processLedgerUKIncome,
-  // processLedgerUKDonation,
-  // processLedgerUKGift,
-  // processLedgerUKFee,
-  // processLedgerUKSplit,
-  // processLedgerUKSplitExecutionOrder,
-
   // testAssetTracker,
   // testAsset,
 

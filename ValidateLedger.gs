@@ -1,4 +1,4 @@
-function testValidateLedger(testName, assetRecords, ledgerRecords, validationError, accountingModel = 'US') {
+function testValidateLedger(testName, assetRecords, ledgerRecords, validationError) {
 
   QUnit.test(testName, function (assert) {
 
@@ -10,7 +10,7 @@ function testValidateLedger(testName, assetRecords, ledgerRecords, validationErr
         let assetTracker = new AssetTracker();
         assetTracker.validateAssetRecords(assetRecords);
         assetTracker.processAssets(assetRecords);
-        assetTracker.validateLedgerRecords(ledgerRecords, accountingModel);
+        assetTracker.validateLedgerRecords(ledgerRecords);
         assetTracker.processLedger(ledgerRecords);
         throw new Error(noErrorMessage);
       },
@@ -198,19 +198,6 @@ function validateLedgerGeneral() {
   validationError = new ValidationError(`Trade row 3: Credit fee is not valid (number or blank).`, 3, 'creditFee');
 
   testValidateLedger('Invalid credit fee', assetRecords, ledgerRecords, validationError);
-
-  assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
-  ];
-
-  ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', 'FIFO')
-  ];
-
-  validationError = new ValidationError(`Trade row 3: Leave lot matching blank when using the UK accounting model.`, 3, 'lotMatching');
-
-  testValidateLedger('Lot matching UK', assetRecords, ledgerRecords, validationError, 'UK');
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -2295,7 +2282,7 @@ function validateLedgerGift() {
 
   testValidateLedger('Gift credit exrate', assetRecords, ledgerRecords, validationError);
 
-   assetRecords = [
+  assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
     new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
   ];
