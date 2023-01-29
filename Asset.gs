@@ -5,26 +5,16 @@ function testAsset() {
   QUnit.test('Ticker', function (assert) {
 
     assert.equal(Asset.tickerRegExp.test('A'), true, 'Ticker A');
-    assert.equal(Asset.tickerRegExp.test('AAAAAAAAAA'), true, 'Ticker AAAAAAAAAA');
+    assert.equal(Asset.tickerRegExp.test('AAAAAAAAAAAAAAAAAAAAAAAAAA'), true, 'Ticker AAAAAAAAAAAAAAAAAAAAAAAAAA');
+    assert.equal(Asset.tickerRegExp.test('#'), true, 'Ticker #');
     assert.equal(Asset.tickerRegExp.test('$'), true, 'Ticker $');
+    assert.equal(Asset.tickerRegExp.test('/'), true, 'Ticker /');
+    assert.equal(Asset.tickerRegExp.test(':'), true, 'Ticker :');
     assert.equal(Asset.tickerRegExp.test('@'), true, 'Ticker @');
-    assert.equal(Asset.tickerRegExp.test('AAAAAAAAAAA'), false, 'Ticker AAAAAAAAAAA');
+    assert.equal(Asset.tickerRegExp.test('AAAAAAAAAAAAAAAAAAAAAAAAAAA'), false, 'Ticker AAAAAAAAAAAAAAAAAAAAAAAAAAA');
     assert.equal(Asset.tickerRegExp.test(' '), false, 'Ticker space');
     assert.equal(Asset.tickerRegExp.test('A A'), false, 'Ticker A A');
-    assert.equal(Asset.tickerRegExp.test('A#A'), false, 'Ticker A#A');
     assert.equal(Asset.tickerRegExp.test('A-A'), false, 'Ticker A-A');
-
-    assert.equal(Asset.tickerRegExp.test('A:A'), true, 'Ticker A:A');
-    assert.equal(Asset.tickerRegExp.test('AAAAAAAAAAAAAAA:A'), true, 'Ticker AAAAAAAAAAAAAAA:A');
-    assert.equal(Asset.tickerRegExp.test(':'), false, 'Ticker :');
-    assert.equal(Asset.tickerRegExp.test('A:'), false, 'Ticker A:');
-    assert.equal(Asset.tickerRegExp.test(':A'), false, 'Ticker :A');
-    assert.equal(Asset.tickerRegExp.test('A$A:A'), false, 'Ticker A$A:A');
-    assert.equal(Asset.tickerRegExp.test('A@A:A'), false, 'Ticker A@A:A');
-    assert.equal(Asset.tickerRegExp.test('A#A:A'), false, 'Ticker A#A:A');
-    assert.equal(Asset.tickerRegExp.test('A-A:A'), false, 'Ticker A-A:A');
-    assert.equal(Asset.tickerRegExp.test('AAAAAAAAAAAAAAAA:A'), false, 'Ticker AAAAAAAAAAAAAAAA:A');
-
   });
 
   QUnit.test('Asset Type', function (assert) {
