@@ -144,38 +144,38 @@ function processLedgerAssetAccountError() {
   testProcessLedgerAssetAccountError('Income dividend asset not previously held', assetRecords, ledgerRecords, assetAccountError);
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 3), 'Split', 'LMN', '', 500, '', 'IB', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 3), 'Adjust', 'LMN', '', 500, '', 'IB', '', '', '', '', '', '')
   ];
 
-  assetAccountError = new AssetAccountError(`Split row 3: Attempted to subtract LMN 500 from IB balance of 0.`, 3, 'debitAmount');
+  assetAccountError = new AssetAccountError(`Adjust row 3: Attempted to subtract LMN 500 from IB balance of 0.`, 3, 'debitAmount');
 
-  testProcessLedgerAssetAccountError('Insufficient funds split subtraction with wallet zero balance', assetRecords, ledgerRecords, assetAccountError);
+  testProcessLedgerAssetAccountError('Insufficient funds adjust subtraction with wallet zero balance', assetRecords, ledgerRecords, assetAccountError);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 3), 'Split', 'LMN', '', 1500, '', 'IB', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 3), 'Adjust', 'LMN', '', 1500, '', 'IB', '', '', '', '', '', '')
   ];
 
-  assetAccountError = new AssetAccountError(`Split row 4: Attempted to subtract LMN 1500 from IB balance of 1000.`, 4, 'debitAmount');
+  assetAccountError = new AssetAccountError(`Adjust row 4: Attempted to subtract LMN 1500 from IB balance of 1000.`, 4, 'debitAmount');
 
-  testProcessLedgerAssetAccountError('Insufficient funds split subtraction with wallet positive balance', assetRecords, ledgerRecords, assetAccountError);
+  testProcessLedgerAssetAccountError('Insufficient funds adjust subtraction with wallet positive balance', assetRecords, ledgerRecords, assetAccountError);
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 3), 'Split', 'LMN', '', 500, '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 3), 'Adjust', 'LMN', '', 500, '', '', '', '', '', '', '', '')
   ];
 
-  assetAccountError = new AssetAccountError(`Split row 3: Attempted to subtract LMN 500 from balance of 0.`, 3, 'debitAmount');
+  assetAccountError = new AssetAccountError(`Adjust row 3: Attempted to subtract LMN 500 from balance of 0.`, 3, 'debitAmount');
 
-  testProcessLedgerAssetAccountError('Insufficient funds split subtraction no wallet zero balance', assetRecords, ledgerRecords, assetAccountError);
+  testProcessLedgerAssetAccountError('Insufficient funds adjust subtraction no wallet zero balance', assetRecords, ledgerRecords, assetAccountError);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 3), 'Split', 'LMN', '', 1500, '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 3), 'Adjust', 'LMN', '', 1500, '', '', '', '', '', '', '', '')
   ];
 
-  assetAccountError = new AssetAccountError(`Split row 4: Attempted to subtract LMN 1500 from balance of 1000.`, 4, 'debitAmount');
+  assetAccountError = new AssetAccountError(`Adjust row 4: Attempted to subtract LMN 1500 from balance of 1000.`, 4, 'debitAmount');
 
-  testProcessLedgerAssetAccountError('Insufficient funds split subtraction no wallet positive balance', assetRecords, ledgerRecords, assetAccountError);
+  testProcessLedgerAssetAccountError('Insufficient funds adjust subtraction no wallet positive balance', assetRecords, ledgerRecords, assetAccountError);
 }
 
 function processLedgerBasic() {
@@ -1538,9 +1538,9 @@ function processLedgerFee() {
   testProcessLedger('Fee asset multi-lot multi-wallet with fees', assetRecords, ledgerRecords, 'Kraken', usd, -2000, ada, lots, closedLots);
 }
 
-function processLedgerSplit() {
+function processLedgerAdjust() {
 
-  QUnit.module('Process Ledger Split');
+  QUnit.module('Process Ledger Adjust');
 
   let ledgerRecords;
   let lots;
@@ -1556,7 +1556,7 @@ function processLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1010, 10, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', 'LMN', '', 750, '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 750, '', '', '', '', '', '', '', '')
   ];
 
   lots = [
@@ -1566,12 +1566,12 @@ function processLedgerSplit() {
   closedLots = [
   ];
 
-  testProcessLedger('Split reverse split no wallet with fees', assetRecords, ledgerRecords, 'IB', usd, -2000, lmn, lots, closedLots);
+  testProcessLedger('Adjust reverse split no wallet with fees', assetRecords, ledgerRecords, 'IB', usd, -2000, lmn, lots, closedLots);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 2010, 10, '', ''),
     new LedgerRecord(new Date(2020, 3, 2), 'Transfer', 'LMN', '', 1000, '', 'IB', '', '', '', '', 'Fidelity', ''),
-    new LedgerRecord(new Date(2020, 3, 3), 'Split', 'LMN', '', 750, '', 'IB', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 3), 'Adjust', 'LMN', '', 750, '', 'IB', '', '', '', '', '', '')
   ];
 
   lots = [
@@ -1581,11 +1581,11 @@ function processLedgerSplit() {
   closedLots = [
   ];
 
-  testProcessLedger('Split reverse split with wallet with fees', assetRecords, ledgerRecords, 'IB', usd, -2000, lmn, lots, closedLots);
+  testProcessLedger('Adjust reverse split with wallet with fees', assetRecords, ledgerRecords, 'IB', usd, -2000, lmn, lots, closedLots);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1010, 10, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', '', '', '', '', '', 'LMN', '', 3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'LMN', '', 3000, '', '', '')
   ];
 
   lots = [
@@ -1595,12 +1595,12 @@ function processLedgerSplit() {
   closedLots = [
   ];
 
-  testProcessLedger('Split forward split no wallet with fees', assetRecords, ledgerRecords, 'IB', usd, -2000, lmn, lots, closedLots);
+  testProcessLedger('Adjust forward split no wallet with fees', assetRecords, ledgerRecords, 'IB', usd, -2000, lmn, lots, closedLots);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 2010, 10, '', ''),
     new LedgerRecord(new Date(2020, 3, 2), 'Transfer', 'LMN', '', 1000, '', 'IB', '', '', '', '', 'Fidelity', ''),
-    new LedgerRecord(new Date(2020, 3, 3), 'Split', '', '', '', '', '', 'LMN', '', 3000, '', 'IB', '')
+    new LedgerRecord(new Date(2020, 3, 3), 'Adjust', '', '', '', '', '', 'LMN', '', 3000, '', 'IB', '')
   ];
 
   lots = [
@@ -1610,11 +1610,11 @@ function processLedgerSplit() {
   closedLots = [
   ];
 
-  testProcessLedger('Split forward split with wallet with fees', assetRecords, ledgerRecords, 'IB', usd, -2000, lmn, lots, closedLots);
+  testProcessLedger('Adjust forward split with wallet with fees', assetRecords, ledgerRecords, 'IB', usd, -2000, lmn, lots, closedLots);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1010, 10, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', 'LMN', '', 1000, '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 1000, '', '', '', '', '', '', '', '')
   ];
 
   lots = [
@@ -1622,15 +1622,15 @@ function processLedgerSplit() {
 
   closedLots = [
     new ClosedLot(
-      new Lot(new Date(2020, 3, 1), usd, 1, 2000, 0, lmn, 10, 10, 'IB', 'Trade', 3), new Date(2020, 3, 2), usd, 1, 0, 0, 'IB', 'Split', 4)
+      new Lot(new Date(2020, 3, 1), usd, 1, 2000, 0, lmn, 10, 10, 'IB', 'Trade', 3), new Date(2020, 3, 2), usd, 1, 0, 0, 'IB', 'Adjust', 4)
   ];
 
-  testProcessLedger('Split reverse split to zero no wallet with fees', assetRecords, ledgerRecords, 'IB', usd, -2000, lmn, lots, closedLots);
+  testProcessLedger('Adjust reverse split to zero no wallet with fees', assetRecords, ledgerRecords, 'IB', usd, -2000, lmn, lots, closedLots);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 2000, 0, '', ''),
     new LedgerRecord(new Date(2020, 3, 2), 'Transfer', 'LMN', '', 1000, '', 'IB', '', '', '', '', 'Fidelity', ''),
-    new LedgerRecord(new Date(2020, 3, 3), 'Split', 'LMN', '', 1000, '', 'IB', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 3), 'Adjust', 'LMN', '', 1000, '', 'IB', '', '', '', '', '', '')
   ];
 
   lots = [
@@ -1638,17 +1638,17 @@ function processLedgerSplit() {
 
   closedLots = [
     new ClosedLot(
-      new Lot(new Date(2020, 3, 1), usd, 1, 1000, 0, lmn, 0, 0, 'IB', 'Trade', 3), new Date(2020, 3, 3), usd, 1, 0, 0, 'IB', 'Split', 5)
+      new Lot(new Date(2020, 3, 1), usd, 1, 1000, 0, lmn, 0, 0, 'IB', 'Trade', 3), new Date(2020, 3, 3), usd, 1, 0, 0, 'IB', 'Adjust', 5)
   ];
 
-  testProcessLedger('Split reverse split to zero with wallet no fees', assetRecords, ledgerRecords, 'IB', usd, -2000, lmn, lots, closedLots);
+  testProcessLedger('Adjust reverse split to zero with wallet no fees', assetRecords, ledgerRecords, 'IB', usd, -2000, lmn, lots, closedLots);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
     new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'USD', '', 4000, '', 'IB', 'LMN', '', 2000, 0, '', ''),
     new LedgerRecord(new Date(2020, 3, 3), 'Trade', 'USD', '', 6000, '', 'IB', 'LMN', '', 3000, 0, '', ''),
     new LedgerRecord(new Date(2020, 3, 4), 'Trade', 'USD', '', 8000, '', 'IB', 'LMN', '', 4000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 5), 'Split', 'LMN', '', 4000, '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 5), 'Adjust', 'LMN', '', 4000, '', '', '', '', '', '', '', '')
   ];
 
   lots = [
@@ -1661,14 +1661,14 @@ function processLedgerSplit() {
   closedLots = [
   ];
 
-  testProcessLedger('Split reverse split multi-lot no wallet no fees', assetRecords, ledgerRecords, 'IB', usd, -20000, lmn, lots, closedLots);
+  testProcessLedger('Adjust reverse split multi-lot no wallet no fees', assetRecords, ledgerRecords, 'IB', usd, -20000, lmn, lots, closedLots);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
     new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'USD', '', 4000, '', 'IB', 'LMN', '', 2000, 0, '', ''),
     new LedgerRecord(new Date(2020, 3, 3), 'Trade', 'USD', '', 6000, '', 'IB', 'LMN', '', 3000, 0, '', ''),
     new LedgerRecord(new Date(2020, 3, 4), 'Trade', 'USD', '', 8000, '', 'Fidelity', 'LMN', '', 4000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 5), 'Split', 'LMN', '', 4000, '', 'IB', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 5), 'Adjust', 'LMN', '', 4000, '', 'IB', '', '', '', '', '', '')
   ];
 
   lots = [
@@ -1680,14 +1680,14 @@ function processLedgerSplit() {
   closedLots = [
   ];
 
-  testProcessLedger('Split reverse split multi-lot with wallet no fees', assetRecords, ledgerRecords, 'IB', usd, -12000, lmn, lots, closedLots);
+  testProcessLedger('Adjust reverse split multi-lot with wallet no fees', assetRecords, ledgerRecords, 'IB', usd, -12000, lmn, lots, closedLots);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
     new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'USD', '', 4000, '', 'IB', 'LMN', '', 2000, 0, '', ''),
     new LedgerRecord(new Date(2020, 3, 3), 'Trade', 'USD', '', 6000, '', 'IB', 'LMN', '', 3000, 0, '', ''),
     new LedgerRecord(new Date(2020, 3, 4), 'Trade', 'USD', '', 8000, '', 'IB', 'LMN', '', 4000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 5), 'Split', '', '', '', '', '', 'LMN', '', 10000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 5), 'Adjust', '', '', '', '', '', 'LMN', '', 10000, '', '', '')
   ];
 
   lots = [
@@ -1700,14 +1700,14 @@ function processLedgerSplit() {
   closedLots = [
   ];
 
-  testProcessLedger('Split forward split multi-lot no wallet no fees', assetRecords, ledgerRecords, 'IB', usd, -20000, lmn, lots, closedLots);
+  testProcessLedger('Adjust forward split multi-lot no wallet no fees', assetRecords, ledgerRecords, 'IB', usd, -20000, lmn, lots, closedLots);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
     new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'USD', '', 4000, '', 'IB', 'LMN', '', 2000, 0, '', ''),
     new LedgerRecord(new Date(2020, 3, 3), 'Trade', 'USD', '', 6000, '', 'IB', 'LMN', '', 3000, 0, '', ''),
     new LedgerRecord(new Date(2020, 3, 4), 'Trade', 'USD', '', 8000, '', 'Fidelity', 'LMN', '', 4000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 5), 'Split', '', '', '', '', '', 'LMN', '', 10000, '', 'IB', '')
+    new LedgerRecord(new Date(2020, 3, 5), 'Adjust', '', '', '', '', '', 'LMN', '', 10000, '', 'IB', '')
   ];
 
   lots = [
@@ -1719,14 +1719,14 @@ function processLedgerSplit() {
   closedLots = [
   ];
 
-  testProcessLedger('Split forward split multi-lot with wallet no fees', assetRecords, ledgerRecords, 'IB', usd, -12000, lmn, lots, closedLots);
+  testProcessLedger('Adjust forward split multi-lot with wallet no fees', assetRecords, ledgerRecords, 'IB', usd, -12000, lmn, lots, closedLots);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
     new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'USD', '', 4000, '', 'IB', 'LMN', '', 2000, 0, '', ''),
     new LedgerRecord(new Date(2020, 3, 3), 'Trade', 'USD', '', 6000, '', 'IB', 'LMN', '', 3000, 0, '', ''),
     new LedgerRecord(new Date(2020, 3, 4), 'Trade', 'USD', '', 8000, '', 'IB', 'LMN', '', 4000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 5), 'Split', 'LMN', '', 10000, '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 5), 'Adjust', 'LMN', '', 10000, '', '', '', '', '', '', '', '')
   ];
 
   lots = [
@@ -1734,23 +1734,23 @@ function processLedgerSplit() {
 
   closedLots = [
     new ClosedLot(
-      new Lot(new Date(2020, 3, 1), usd, 1, 2000, 0, lmn, 0, 0, 'IB', 'Trade', 3), new Date(2020, 3, 5), usd, 1, 0, 0, 'IB', 'Split', 7),
+      new Lot(new Date(2020, 3, 1), usd, 1, 2000, 0, lmn, 0, 0, 'IB', 'Trade', 3), new Date(2020, 3, 5), usd, 1, 0, 0, 'IB', 'Adjust', 7),
     new ClosedLot(
-      new Lot(new Date(2020, 3, 2), usd, 1, 4000, 0, lmn, 0, 0, 'IB', 'Trade', 4), new Date(2020, 3, 5), usd, 1, 0, 0, 'IB', 'Split', 7),
+      new Lot(new Date(2020, 3, 2), usd, 1, 4000, 0, lmn, 0, 0, 'IB', 'Trade', 4), new Date(2020, 3, 5), usd, 1, 0, 0, 'IB', 'Adjust', 7),
     new ClosedLot(
-      new Lot(new Date(2020, 3, 3), usd, 1, 6000, 0, lmn, 0, 0, 'IB', 'Trade', 5), new Date(2020, 3, 5), usd, 1, 0, 0, 'IB', 'Split', 7),
+      new Lot(new Date(2020, 3, 3), usd, 1, 6000, 0, lmn, 0, 0, 'IB', 'Trade', 5), new Date(2020, 3, 5), usd, 1, 0, 0, 'IB', 'Adjust', 7),
     new ClosedLot(
-      new Lot(new Date(2020, 3, 4), usd, 1, 8000, 0, lmn, 0, 0, 'IB', 'Trade', 6), new Date(2020, 3, 5), usd, 1, 0, 0, 'IB', 'Split', 7)
+      new Lot(new Date(2020, 3, 4), usd, 1, 8000, 0, lmn, 0, 0, 'IB', 'Trade', 6), new Date(2020, 3, 5), usd, 1, 0, 0, 'IB', 'Adjust', 7)
   ];
 
-  testProcessLedger('Split reverse split to zero multi-lot no wallet no fees', assetRecords, ledgerRecords, 'IB', usd, -20000, lmn, lots, closedLots);
+  testProcessLedger('Adjust reverse split to zero multi-lot no wallet no fees', assetRecords, ledgerRecords, 'IB', usd, -20000, lmn, lots, closedLots);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
     new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'USD', '', 4000, '', 'IB', 'LMN', '', 2000, 0, '', ''),
     new LedgerRecord(new Date(2020, 3, 3), 'Trade', 'USD', '', 6000, '', 'IB', 'LMN', '', 3000, 0, '', ''),
     new LedgerRecord(new Date(2020, 3, 4), 'Trade', 'USD', '', 8000, '', 'Fidelity', 'LMN', '', 4000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 5), 'Split', 'LMN', '', 6000, '', 'IB', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 5), 'Adjust', 'LMN', '', 6000, '', 'IB', '', '', '', '', '', '')
   ];
 
   lots = [
@@ -1758,12 +1758,12 @@ function processLedgerSplit() {
 
   closedLots = [
     new ClosedLot(
-      new Lot(new Date(2020, 3, 1), usd, 1, 2000, 0, lmn, 0, 0, 'IB', 'Trade', 3), new Date(2020, 3, 5), usd, 1, 0, 0, 'IB', 'Split', 7),
+      new Lot(new Date(2020, 3, 1), usd, 1, 2000, 0, lmn, 0, 0, 'IB', 'Trade', 3), new Date(2020, 3, 5), usd, 1, 0, 0, 'IB', 'Adjust', 7),
     new ClosedLot(
-      new Lot(new Date(2020, 3, 2), usd, 1, 4000, 0, lmn, 0, 0, 'IB', 'Trade', 4), new Date(2020, 3, 5), usd, 1, 0, 0, 'IB', 'Split', 7),
+      new Lot(new Date(2020, 3, 2), usd, 1, 4000, 0, lmn, 0, 0, 'IB', 'Trade', 4), new Date(2020, 3, 5), usd, 1, 0, 0, 'IB', 'Adjust', 7),
     new ClosedLot(
-      new Lot(new Date(2020, 3, 3), usd, 1, 6000, 0, lmn, 0, 0, 'IB', 'Trade', 5), new Date(2020, 3, 5), usd, 1, 0, 0, 'IB', 'Split', 7)
+      new Lot(new Date(2020, 3, 3), usd, 1, 6000, 0, lmn, 0, 0, 'IB', 'Trade', 5), new Date(2020, 3, 5), usd, 1, 0, 0, 'IB', 'Adjust', 7)
   ];
 
-  testProcessLedger('Split reverse split to zero multi-lot with wallet no fees', assetRecords, ledgerRecords, 'IB', usd, -12000, lmn, lots, closedLots);
+  testProcessLedger('Adjust reverse split to zero multi-lot with wallet no fees', assetRecords, ledgerRecords, 'IB', usd, -12000, lmn, lots, closedLots);
 }

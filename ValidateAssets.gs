@@ -59,12 +59,30 @@ function validateAssets() {
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('#', 'Stock', 0, '', '', '', '')
+    new AssetRecord('ABC!', 'Stock', 0, '', '', '', '')
   ];
 
-  validationError = new ValidationError(`Assets row 3: Asset (#) format is invalid.\nInput must be 1-10 characters [A-Za-z0-9_$@].\nOptional prefix of 1-15 characters [A-Za-z0-9_] and colon [:].`, 3, 'ticker');
+  validationError = new ValidationError(`Assets row 3: Asset (ABC!) format is invalid.\nInput must be 1-26 characters [A-Za-z0-9_#$/:@].`, 3, 'ticker');
 
-  testValidateAssets('Invalid asset format', assetRecords, validationError);
+  testValidateAssets('Invalid asset format - invalid character', assetRecords, validationError);
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
+    new AssetRecord('ABCDEFGHIJKLMNOPQRSTU_#$/:@', 'Stock', 0, '', '', '', '')
+  ];
+
+  validationError = new ValidationError(`Assets row 3: Asset (ABCDEFGHIJKLMNOPQRSTU_#$/:@) format is invalid.\nInput must be 1-26 characters [A-Za-z0-9_#$/:@].`, 3, 'ticker');
+
+  testValidateAssets('Invalid asset format - too long', assetRecords, validationError);
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
+    new AssetRecord('ABCDEFGHIJKLMNOPQRST_#$/:@', 'Stock', 0, '', '', '', '')
+  ];
+
+  validationError = null;
+
+  testValidateAssets('Valid asset format', assetRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -77,12 +95,48 @@ function validateAssets() {
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', '#', 0, '', '', '', '')
+    new AssetRecord('LMN', 'ABC!', 0, '', '', '', '')
   ];
 
-  validationError = new ValidationError(`Assets row 3: Asset type (#) format is invalid.\nInput must be between 1 and 20 characters [A-Za-z0-9_-].\nSpaces between characters allowed.`, 3, 'assetType');
+  validationError = new ValidationError(`Assets row 3: Asset type (ABC!) format is invalid.\nInput must be between 1 and 20 characters [A-Za-z0-9_-].\nSpaces between characters allowed.`, 3, 'assetType');
 
-  testValidateAssets('Invalid asset type format', assetRecords, validationError);
+  testValidateAssets('Invalid asset type format - invalid character', assetRecords, validationError);
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
+    new AssetRecord('LMN', ' A', 0, '', '', '', '')
+  ];
+
+  validationError = new ValidationError(`Assets row 3: Asset type ( A) format is invalid.\nInput must be between 1 and 20 characters [A-Za-z0-9_-].\nSpaces between characters allowed.`, 3, 'assetType');
+
+  testValidateAssets('Invalid asset type format - starts with space', assetRecords, validationError);
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
+    new AssetRecord('LMN', 'A BCDEFGHIJKLMNOPQR_-', 0, '', '', '', '')
+  ];
+
+  validationError = new ValidationError(`Assets row 3: Asset type (A BCDEFGHIJKLMNOPQR_-) format is invalid.\nInput must be between 1 and 20 characters [A-Za-z0-9_-].\nSpaces between characters allowed.`, 3, 'assetType');
+
+  testValidateAssets('Invalid asset type format - too long', assetRecords, validationError);
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
+    new AssetRecord('LMN', 'A BCDEFGHIJKLMNOPQ_-', 0, '', '', '', '')
+  ];
+
+  validationError = null;
+
+  testValidateAssets('Valid asset type format - long', assetRecords, validationError);
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
+    new AssetRecord('LMN', 'A', 0, '', '', '', '')
+  ];
+
+  validationError = null;
+
+  testValidateAssets('Valid asset type format - short', assetRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -146,10 +200,10 @@ function validateAssets() {
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', 'InvalidAPI', '')
+    new AssetRecord('EUR', 'Fiat', 2, '', '', 'Invalid ID', '')
   ];
 
-  validationError = new ValidationError(`Assets row 3: API (InvalidAPI) is not valid (CoinMarketCap, CryptoCompare) or blank.`, 3, 'apiName');
+  validationError = new ValidationError(`Assets row 3: CoinMarketCap ID (Invalid ID) is not valid (0-999999).`, 3, 'cmcId');
 
-  testValidateAssets('Invalid API', assetRecords, validationError);
+  testValidateAssets('Invalid CoinMarketCap ID', assetRecords, validationError);
 }

@@ -2755,9 +2755,9 @@ function validateLedgerFee() {
   testValidateLedger('Fee credit wallet', assetRecords, ledgerRecords, validationError);
 }
 
-function validateLedgerSplit() {
+function validateLedgerAdjust() {
 
-  QUnit.module('Validate Ledger Split');
+  QUnit.module('Validate Ledger Adjust');
 
   let assetRecords;
   let ledgerRecords;
@@ -2770,12 +2770,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', 'LMN', '', 750, '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 750, '', '', '', '', '', '', '', '')
   ];
 
   validationError = null;
 
-  testValidateLedger('Split reverse split no wallet valid', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust reverse split no wallet valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -2784,12 +2784,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', 'LMN', '', 750, '', 'IB', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 750, '', 'IB', '', '', '', '', '', '')
   ];
 
   validationError = null;
 
-  testValidateLedger('Split reverse split with wallet valid', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust reverse split with wallet valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -2798,12 +2798,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', '', '', '', '', '', 'LMN', '', 3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'LMN', '', 3000, '', '', '')
   ];
 
   validationError = null;
 
-  testValidateLedger('Split forward split no wallet valid', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust forward split no wallet valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -2812,12 +2812,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', '', '', '', '', '', 'LMN', '', 3000, '', 'IB', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'LMN', '', 3000, '', 'IB', '')
   ];
 
   validationError = null;
 
-  testValidateLedger('Split forward split with wallet valid', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust forward split with wallet valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -2826,12 +2826,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', 'LMN', '', 750, '', '', 'LMN', '', 3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 750, '', '', 'LMN', '', 3000, '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Either enter debit asset and debit amount for reverse splits (decrease amount held) or credit asset and credit amount for foward splits (increase amount held).`, 4, 'debitAsset');
+  validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'debitAsset');
 
-  testValidateLedger('Split debit asset, debit amount, credit asset, credit amount ✓✓✓✓ debit asset column', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✓✓✓✓ debit asset column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -2840,12 +2840,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', 'LMN', '', '', '', '', 'LMN', '', 3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', '', '', '', 'LMN', '', 3000, '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Either enter debit asset and debit amount for reverse splits (decrease amount held) or credit asset and credit amount for foward splits (increase amount held).`, 4, 'debitAsset');
+  validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'debitAsset');
 
-  testValidateLedger('Split debit asset, debit amount, credit asset, credit amount ✓✗✓✓ debit asset column', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✓✗✓✓ debit asset column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -2854,12 +2854,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', 'LMN', '', '', '', '', 'LMN', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', '', '', '', 'LMN', '', '', '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Either enter debit asset and debit amount for reverse splits (decrease amount held) or credit asset and credit amount for foward splits (increase amount held).`, 4, 'debitAsset');
+  validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'debitAsset');
 
-  testValidateLedger('Split debit asset, debit amount, credit asset, credit amount ✓✗✓✗ debit asset column', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✓✗✓✗ debit asset column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -2868,12 +2868,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', 'LMN', '', '', '', '', '', '', 3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', '', '', '', '', '', 3000, '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Either enter debit asset and debit amount for reverse splits (decrease amount held) or credit asset and credit amount for foward splits (increase amount held).`, 4, 'debitAsset');
+  validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'debitAsset');
 
-  testValidateLedger('Split debit asset, debit amount, credit asset, credit amount ✓✗✗✓ debit asset column', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✓✗✗✓ debit asset column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -2882,12 +2882,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', '', '', '750', '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '750', '', '', '', '', '', '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Either enter debit asset and debit amount for reverse splits (decrease amount held) or credit asset and credit amount for foward splits (increase amount held).`, 4, 'debitAsset');
+  validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'debitAsset');
 
-  testValidateLedger('Split debit asset, debit amount, credit asset, credit amount ✗✓✗✗ debit asset column', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✗✓✗✗ debit asset column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -2896,12 +2896,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', '', '', '', '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', '', '', '', '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Either enter debit asset and debit amount for reverse splits (decrease amount held) or credit asset and credit amount for foward splits (increase amount held).`, 4, 'debitAsset');
+  validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'debitAsset');
 
-  testValidateLedger('Split debit asset, debit amount, credit asset, credit amount ✗✗✗✗ debit asset column', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✗✗✗✗ debit asset column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -2910,12 +2910,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', 'LMN', '', '', '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', '', '', '', '', '', '', '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Either enter debit asset and debit amount for reverse splits (decrease amount held) or credit asset and credit amount for foward splits (increase amount held).`, 4, 'debitAmount');
+  validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'debitAmount');
 
-  testValidateLedger('Split debit asset, debit amount, credit asset, credit amount ✓✗✗✗ debit amount column', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✓✗✗✗ debit amount column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -2924,12 +2924,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', '', '', 750, '', '', 'LMN', '', 3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', 750, '', '', 'LMN', '', 3000, '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Either enter debit asset and debit amount for reverse splits (decrease amount held) or credit asset and credit amount for foward splits (increase amount held).`, 4, 'debitAmount');
+  validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'debitAmount');
 
-  testValidateLedger('Split debit asset, debit amount, credit asset, credit amount ✗✓✓✓ debit amount column', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✗✓✓✓ debit amount column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -2938,12 +2938,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', '', '', 750, '', '', 'LMN', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', 750, '', '', 'LMN', '', '', '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Either enter debit asset and debit amount for reverse splits (decrease amount held) or credit asset and credit amount for foward splits (increase amount held).`, 4, 'debitAmount');
+  validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'debitAmount');
 
-  testValidateLedger('Split debit asset, debit amount, credit asset, credit amount ✗✓✓✗ debit amount column', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✗✓✓✗ debit amount column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -2952,12 +2952,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', '', '', 750, '', '', '', '', 3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', 750, '', '', '', '', 3000, '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Either enter debit asset and debit amount for reverse splits (decrease amount held) or credit asset and credit amount for foward splits (increase amount held).`, 4, 'debitAmount');
+  validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'debitAmount');
 
-  testValidateLedger('Split debit asset, debit amount, credit asset, credit amount ✗✓✗✓ debit amount column', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✗✓✗✓ debit amount column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -2966,12 +2966,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', 'LMN', '', 750, '', '', 'LMN', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 750, '', '', 'LMN', '', '', '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Either enter debit asset and debit amount for reverse splits (decrease amount held) or credit asset and credit amount for foward splits (increase amount held).`, 4, 'creditAsset');
+  validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'creditAsset');
 
-  testValidateLedger('Split debit asset, debit amount, credit asset, credit amount ✓✓✓✗ credit asset column', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✓✓✓✗ credit asset column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -2980,12 +2980,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', '', '', '', '', '', '', '', 3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', '', '', 3000, '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Either enter debit asset and debit amount for reverse splits (decrease amount held) or credit asset and credit amount for foward splits (increase amount held).`, 4, 'creditAsset');
+  validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'creditAsset');
 
-  testValidateLedger('Split debit asset, debit amount, credit asset, credit amount ✗✗✗✓ credit asset column', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✗✗✗✓ credit asset column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -2994,12 +2994,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', 'LMN', '', 750, '', '', '', '', 3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 750, '', '', '', '', 3000, '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Either enter debit asset and debit amount for reverse splits (decrease amount held) or credit asset and credit amount for foward splits (increase amount held).`, 4, 'creditAmount');
+  validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'creditAmount');
 
-  testValidateLedger('Split debit asset, debit amount, credit asset, credit amount ✓✓✗✓ credit amount column', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✓✓✗✓ credit amount column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -3008,12 +3008,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', '', '', '', '', '', 'LMN', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'LMN', '', '', '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Either enter debit asset and debit amount for reverse splits (decrease amount held) or credit asset and credit amount for foward splits (increase amount held).`, 4, 'creditAmount');
+  validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'creditAmount');
 
-  testValidateLedger('Split debit asset, debit amount, credit asset, credit amount ✗✗✓✗ credit amount column', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✗✗✓✗ credit amount column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -3023,12 +3023,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', 'EUR', '', 750, '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'EUR', '', 750, '', '', '', '', '', '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Debit asset (EUR) is fiat, not supported.`, 4, 'debitAsset');
+  validationError = new ValidationError(`Adjust row 4: Debit asset (EUR) is fiat, not supported.`, 4, 'debitAsset');
 
-  testValidateLedger('Split debit asset fiat', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust debit asset fiat', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -3037,12 +3037,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', 'LMN', 2, 750, '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', 2, 750, '', '', '', '', '', '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Leave debit exchange rate blank.`, 4, 'debitExRate');
+  validationError = new ValidationError(`Adjust row 4: Leave debit exchange rate blank.`, 4, 'debitExRate');
 
-  testValidateLedger('Split debit exrate', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust debit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -3051,12 +3051,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', 'LMN', '', -750, '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', -750, '', '', '', '', '', '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Debit amount must be greater than 0.`, 4, 'debitAmount');
+  validationError = new ValidationError(`Adjust row 4: Debit amount must be greater than 0.`, 4, 'debitAmount');
 
-  testValidateLedger('Split negative debit amount', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust negative debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -3065,12 +3065,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', 'LMN', '', 0, '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 0, '', '', '', '', '', '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Debit amount must be greater than 0.`, 4, 'debitAmount');
+  validationError = new ValidationError(`Adjust row 4: Debit amount must be greater than 0.`, 4, 'debitAmount');
 
-  testValidateLedger('Split zero debit amount', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust zero debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -3079,12 +3079,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', 'LMN', '', 750, 10, '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 750, 10, '', '', '', '', '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Leave debit fee blank.`, 4, 'debitFee');
+  validationError = new ValidationError(`Adjust row 4: Leave debit fee blank.`, 4, 'debitFee');
 
-  testValidateLedger('Split debit fee', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust debit fee', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -3093,12 +3093,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', '', '', '', '', 'IB', 'LMN', '', 3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', 'IB', 'LMN', '', 3000, '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: For foward splits (increase amount held) leave debit wallet (IB) blank.`, 4, 'debitWalletName');
+  validationError = new ValidationError(`Adjust row 4: To increase the amount held (foward split) leave debit wallet (IB) blank.`, 4, 'debitWalletName');
 
-  testValidateLedger('Split foward split debit wallet', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust foward split debit wallet', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -3108,12 +3108,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', '', '', '', '', '', 'EUR', '', 3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'EUR', '', 3000, '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Credit asset (EUR) is fiat, not supported.`, 4, 'creditAsset');
+  validationError = new ValidationError(`Adjust row 4: Credit asset (EUR) is fiat, not supported.`, 4, 'creditAsset');
 
-  testValidateLedger('Split credit asset fiat', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust credit asset fiat', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -3122,12 +3122,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', '', '', '', '', '', 'LMN', 2, 3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'LMN', 2, 3000, '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Leave credit exchange rate blank.`, 4, 'creditExRate');
+  validationError = new ValidationError(`Adjust row 4: Leave credit exchange rate blank.`, 4, 'creditExRate');
 
-  testValidateLedger('Split credit exrate', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust credit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -3136,12 +3136,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', '', '', '', '', '', 'LMN', '', -3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'LMN', '', -3000, '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Credit amount must be greater than 0.`, 4, 'creditAmount');
+  validationError = new ValidationError(`Adjust row 4: Credit amount must be greater than 0.`, 4, 'creditAmount');
 
-  testValidateLedger('Split negative credit amount', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust negative credit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -3150,12 +3150,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', '', '', '', '', '', 'LMN', '', 0, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'LMN', '', 0, '', '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Credit amount must be greater than 0.`, 4, 'creditAmount');
+  validationError = new ValidationError(`Adjust row 4: Credit amount must be greater than 0.`, 4, 'creditAmount');
 
-  testValidateLedger('Split zero credit amount', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust zero credit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -3164,12 +3164,12 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', '', '', '', '', '', 'LMN', '', 3000, 10, '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'LMN', '', 3000, 10, '', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: Leave credit fee blank.`, 4, 'creditFee');
+  validationError = new ValidationError(`Adjust row 4: Leave credit fee blank.`, 4, 'creditFee');
 
-  testValidateLedger('Split credit fee', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust credit fee', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -3178,10 +3178,10 @@ function validateLedgerSplit() {
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Split', 'LMN', '', 750, '', '', '', '', '', '', 'IB', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 750, '', '', '', '', '', '', 'IB', '')
   ];
 
-  validationError = new ValidationError(`Split row 4: For reverse splits (decrease amount held) leave credit wallet (IB) blank.`, 4, 'creditWalletName');
+  validationError = new ValidationError(`Adjust row 4: To decrease the amount held (reverse split) leave credit wallet (IB) blank.`, 4, 'creditWalletName');
 
-  testValidateLedger('Split reverse split credit wallet', assetRecords, ledgerRecords, validationError);
+  testValidateLedger('Adjust reverse split credit wallet', assetRecords, ledgerRecords, validationError);
 }

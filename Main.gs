@@ -3,7 +3,7 @@ const MAIN_TEST_TITLE_ = 'WealthLedger Test';
 
 const TESTS_ = [
 
-  // validateAssets,
+  validateAssets,
   // validateLedgerGeneral,
   // validateLedgerTransfer,
   // validateLedgerTrade,
@@ -11,7 +11,7 @@ const TESTS_ = [
   // validateLedgerDonation,
   // validateLedgerGift,
   // validateLedgerFee,
-  // validateLedgerSplit,
+  // validateLedgerAdjust,
 
   // processLedgerAssetAccountError,
   // processLedgerBasic,
@@ -23,7 +23,7 @@ const TESTS_ = [
   // processLedgerDonation,
   // processLedgerGift,
   // processLedgerFee,
-  // processLedgerSplit,
+  // processLedgerAdjust,
 
   // testAssetTracker,
   // testAsset,
