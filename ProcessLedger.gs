@@ -407,9 +407,170 @@ function processLedgerTransfer() {
   testProcessLedger('Transfer asset no fee credited', assetRecords, ledgerRecords, 'Ledger', null, 0, ada, lots, closedLots);
 }
 
-function processLedgerTrade() {
+function processLedgerTradeNoFees() {
 
-  QUnit.module('Process Ledger Trade');
+  QUnit.module('Process Ledger Trade No Fees');
+
+  let ledgerRecords;
+  let lots;
+  let closedLots;
+
+  let assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, 1, '', '', ''),
+    new AssetRecord('GBP', 'Fiat', 2, 1, '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', ''),
+    new AssetRecord('ALGO', 'Crypto', 8, '', '', '', '')
+  ];
+
+  let usd = new Asset('USD', 'Fiat', true, 2, 2);
+  let eur = new Asset('EUR', 'Fiat', false, 2, 3);
+  let gbp = new Asset('GBP', 'Fiat', false, 2, 4);
+  let ada = new Asset('ADA', 'Crypto', false, 6, 5);
+  let algo = new Asset('ALGO', 'Crypto', false, 8, 6);
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '')
+  ];
+
+  lots = [
+    new Lot(new Date(2020, 3, 1), usd, 1, 1200, 0, ada, 1000, 0, 'Kraken', 'Trade', 3)
+  ];
+
+  closedLots = [
+  ];
+
+  testProcessLedger('Trade fiat base buy no fees', assetRecords, ledgerRecords, 'Kraken', usd, -1200, ada, lots, closedLots);
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', '', 1000, '', 'Kraken', 'USD', '', 1200, '', '', '')
+  ];
+
+  lots = [
+  ];
+
+  closedLots = [
+    new ClosedLot(
+      new Lot(new Date(2020, 3, 1), usd, 1, 1200, 0, ada, 1000, 0, 'Kraken', 'Trade', 3), new Date(2020, 3, 2), usd, 1, 1200, 0, 'Kraken', 'Trade', 4)
+  ];
+
+  testProcessLedger('Trade fiat base sell no fees', assetRecords, ledgerRecords, 'Kraken', usd, 0, ada, lots, closedLots);
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 1.2, 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '')
+  ];
+
+  lots = [
+    new Lot(new Date(2020, 3, 1), eur, 1.2, 1200, 0, ada, 1000, 0, 'Kraken', 'Trade', 3)
+  ];
+
+  closedLots = [
+  ];
+
+  testProcessLedger('Trade fiat buy no fees debit exrate', assetRecords, ledgerRecords, 'Kraken', eur, -1200, ada, lots, closedLots);
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 1200, '', 'Kraken', 'ADA', 1.2, 1000, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', 1.2, 1000, '', 'Kraken', 'EUR', '', 1200, '', '', '')
+  ];
+
+  lots = [
+  ];
+
+  closedLots = [
+    new ClosedLot(
+      new Lot(new Date(2020, 3, 1), eur, 1, 1200, 0, ada, 1000, 0, 'Kraken', 'Trade', 3), new Date(2020, 3, 2), eur, 1, 1200, 0, 'Kraken', 'Trade', 4)
+  ];
+
+  testProcessLedger('Trade fiat sell no fees debit exrate', assetRecords, ledgerRecords, 'Kraken', eur, 0, ada, lots, closedLots);
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 1200, '', 'Kraken', 'ADA', 1.2, 1000, '', '', '')
+  ];
+
+  lots = [
+    new Lot(new Date(2020, 3, 1), eur, 1, 1200, 0, ada, 1000, 0, 'Kraken', 'Trade', 3)
+  ];
+
+  closedLots = [
+  ];
+
+  testProcessLedger('Trade fiat buy no fees credit exrate', assetRecords, ledgerRecords, 'Kraken', eur, -1200, ada, lots, closedLots);
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 1.2, 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', '', 1000, '', 'Kraken', 'EUR', 1.2, 1200, '', '', '')
+  ];
+
+  lots = [
+  ];
+
+  closedLots = [
+    new ClosedLot(
+      new Lot(new Date(2020, 3, 1), eur, 1.2, 1200, 0, ada, 1000, 0, 'Kraken', 'Trade', 3), new Date(2020, 3, 2), eur, 1.2, 1200, 0, 'Kraken', 'Trade', 4)
+  ];
+
+  testProcessLedger('Trade fiat sell no fees credit exrate', assetRecords, ledgerRecords, 'Kraken', eur, 0, ada, lots, closedLots);
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', 1.2, 1000, '', 'Kraken', 'ALGO', '', 1200, '', '', '')
+  ];
+
+  lots = [
+  ];
+
+  closedLots = [
+    new ClosedLot(
+      new Lot(new Date(2020, 3, 1), usd, 1, 1200, 0, ada, 1000, 0, 'Kraken', 'Trade', 3), new Date(2020, 3, 2), algo, 1, 1200, 0, 'Kraken', 'Trade', 4)
+  ];
+
+  testProcessLedger('Trade exchange assets no fees debit exrate', assetRecords, ledgerRecords, 'Kraken', usd, -1200, ada, lots, closedLots);
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', '', 1000, '', 'Kraken', 'ALGO', 1.2, 1200, '', '', '')
+  ];
+
+  lots = [
+  ];
+
+  closedLots = [
+    new ClosedLot(
+      new Lot(new Date(2020, 3, 1), usd, 1, 1200, 0, ada, 1000, 0, 'Kraken', 'Trade', 3), new Date(2020, 3, 2), algo, 1.2, 1200, 0, 'Kraken', 'Trade', 4)
+  ];
+
+  testProcessLedger('Trade exchange assets no fees credit exrate', assetRecords, ledgerRecords, 'Kraken', usd, -1200, ada, lots, closedLots);
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'EUR', '', 1000, '', '', '')
+  ];
+
+  testProcessLedger('Trade fiat base buy fiat no fees', assetRecords, ledgerRecords, 'Kraken', eur, 1000);
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 1000, '', 'Kraken', 'USD', '', 1200, '', '', '')
+  ];
+
+  testProcessLedger('Trade fiat base sell fiat no fees', assetRecords, ledgerRecords, 'Kraken', eur, -1000);
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'GBP', '', 1000, '', 'Kraken', 'EUR', '', 1200, '', '', '')
+  ];
+
+  testProcessLedger('Trade exchange fiat no fees debit', assetRecords, ledgerRecords, 'Kraken', gbp, -1000);
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'GBP', '', 1000, '', 'Kraken', 'EUR', '', 1200, '', '', '')
+  ];
+
+  testProcessLedger('Trade exchange fiat no fees credit', assetRecords, ledgerRecords, 'Kraken', eur, 1200);
+}
+
+function processLedgerTradeWithFees() {
+
+  QUnit.module('Process Ledger Trade With Fees');
 
   let ledgerRecords;
   let lots;
@@ -441,19 +602,6 @@ function processLedgerTrade() {
   ];
 
   testProcessLedger('Trade fiat base buy with fees', assetRecords, ledgerRecords, 'Kraken', usd, -1210, ada, lots, closedLots);
-
-  ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '')
-  ];
-
-  lots = [
-    new Lot(new Date(2020, 3, 1), usd, 1, 1200, 0, ada, 1000, 0, 'Kraken', 'Trade', 3)
-  ];
-
-  closedLots = [
-  ];
-
-  testProcessLedger('Trade fiat base buy no fees', assetRecords, ledgerRecords, 'Kraken', usd, -1200, ada, lots, closedLots);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, 10, 'Kraken', 'ADA', '', 1020, 10, '', ''),
@@ -492,21 +640,6 @@ function processLedgerTrade() {
   testProcessLedger('Trade fiat base sell multi-lot with fees default lot matching FIFO', assetRecords, ledgerRecords, 'Kraken', usd, -1845, ada, lots, closedLots);
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', '', 1000, '', 'Kraken', 'USD', '', 1200, '', '', '')
-  ];
-
-  lots = [
-  ];
-
-  closedLots = [
-    new ClosedLot(
-      new Lot(new Date(2020, 3, 1), usd, 1, 1200, 0, ada, 1000, 0, 'Kraken', 'Trade', 3), new Date(2020, 3, 2), usd, 1, 1200, 0, 'Kraken', 'Trade', 4)
-  ];
-
-  testProcessLedger('Trade fiat base sell no fees', assetRecords, ledgerRecords, 'Kraken', usd, 0, ada, lots, closedLots);
-
-  ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 1.2, 1200, 10, 'Kraken', 'ADA', '', 1000, 10, '', '')
   ];
 
@@ -518,19 +651,6 @@ function processLedgerTrade() {
   ];
 
   testProcessLedger('Trade fiat buy with fees debit exrate', assetRecords, ledgerRecords, 'Kraken', eur, -1210, ada, lots, closedLots);
-
-  ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 1.2, 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '')
-  ];
-
-  lots = [
-    new Lot(new Date(2020, 3, 1), eur, 1.2, 1200, 0, ada, 1000, 0, 'Kraken', 'Trade', 3)
-  ];
-
-  closedLots = [
-  ];
-
-  testProcessLedger('Trade fiat buy no fees debit exrate', assetRecords, ledgerRecords, 'Kraken', eur, -1200, ada, lots, closedLots);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 1200, '', 'Kraken', 'ADA', 1.2, 1010, '', '', ''),
@@ -548,21 +668,6 @@ function processLedgerTrade() {
   testProcessLedger('Trade fiat sell with fees debit exrate', assetRecords, ledgerRecords, 'Kraken', eur, -10, ada, lots, closedLots);
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 1200, '', 'Kraken', 'ADA', 1.2, 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', 1.2, 1000, '', 'Kraken', 'EUR', '', 1200, '', '', '')
-  ];
-
-  lots = [
-  ];
-
-  closedLots = [
-    new ClosedLot(
-      new Lot(new Date(2020, 3, 1), eur, 1, 1200, 0, ada, 1000, 0, 'Kraken', 'Trade', 3), new Date(2020, 3, 2), eur, 1, 1200, 0, 'Kraken', 'Trade', 4)
-  ];
-
-  testProcessLedger('Trade fiat sell no fees debit exrate', assetRecords, ledgerRecords, 'Kraken', eur, 0, ada, lots, closedLots);
-
-  ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 1200, 10, 'Kraken', 'ADA', 1.2, 1000, 10, '', '')
   ];
 
@@ -574,19 +679,6 @@ function processLedgerTrade() {
   ];
 
   testProcessLedger('Trade fiat buy with fees credit exrate', assetRecords, ledgerRecords, 'Kraken', eur, -1210, ada, lots, closedLots);
-
-  ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 1200, '', 'Kraken', 'ADA', 1.2, 1000, '', '', '')
-  ];
-
-  lots = [
-    new Lot(new Date(2020, 3, 1), eur, 1, 1200, 0, ada, 1000, 0, 'Kraken', 'Trade', 3)
-  ];
-
-  closedLots = [
-  ];
-
-  testProcessLedger('Trade fiat buy no fees credit exrate', assetRecords, ledgerRecords, 'Kraken', eur, -1200, ada, lots, closedLots);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 1.2, 1200, '', 'Kraken', 'ADA', '', 1010, '', '', ''),
@@ -604,21 +696,6 @@ function processLedgerTrade() {
   testProcessLedger('Trade fiat sell with fees credit exrate', assetRecords, ledgerRecords, 'Kraken', eur, -10, ada, lots, closedLots);
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 1.2, 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', '', 1000, '', 'Kraken', 'EUR', 1.2, 1200, '', '', '')
-  ];
-
-  lots = [
-  ];
-
-  closedLots = [
-    new ClosedLot(
-      new Lot(new Date(2020, 3, 1), eur, 1.2, 1200, 0, ada, 1000, 0, 'Kraken', 'Trade', 3), new Date(2020, 3, 2), eur, 1.2, 1200, 0, 'Kraken', 'Trade', 4)
-  ];
-
-  testProcessLedger('Trade fiat sell no fees credit exrate', assetRecords, ledgerRecords, 'Kraken', eur, 0, ada, lots, closedLots);
-
-  ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1010, '', '', ''),
     new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', 1.2, 1000, 10, 'Kraken', 'ALGO', '', 1200, 10, '', '')
   ];
@@ -632,21 +709,6 @@ function processLedgerTrade() {
   ];
 
   testProcessLedger('Trade exchange assets with fees debit exrate', assetRecords, ledgerRecords, 'Kraken', usd, -1200, ada, lots, closedLots);
-
-  ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', 1.2, 1000, '', 'Kraken', 'ALGO', '', 1200, '', '', '')
-  ];
-
-  lots = [
-  ];
-
-  closedLots = [
-    new ClosedLot(
-      new Lot(new Date(2020, 3, 1), usd, 1, 1200, 0, ada, 1000, 0, 'Kraken', 'Trade', 3), new Date(2020, 3, 2), algo, 1, 1200, 0, 'Kraken', 'Trade', 4)
-  ];
-
-  testProcessLedger('Trade exchange assets no fees debit exrate', assetRecords, ledgerRecords, 'Kraken', usd, -1200, ada, lots, closedLots);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1010, '', '', ''),
@@ -664,43 +726,16 @@ function processLedgerTrade() {
   testProcessLedger('Trade exchange assets with fees credit exrate', assetRecords, ledgerRecords, 'Kraken', usd, -1200, ada, lots, closedLots);
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', '', 1000, '', 'Kraken', 'ALGO', 1.2, 1200, '', '', '')
-  ];
-
-  lots = [
-  ];
-
-  closedLots = [
-    new ClosedLot(
-      new Lot(new Date(2020, 3, 1), usd, 1, 1200, 0, ada, 1000, 0, 'Kraken', 'Trade', 3), new Date(2020, 3, 2), algo, 1.2, 1200, 0, 'Kraken', 'Trade', 4)
-  ];
-
-  testProcessLedger('Trade exchange assets no fees credit exrate', assetRecords, ledgerRecords, 'Kraken', usd, -1200, ada, lots, closedLots);
-
-  ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, 10, 'Kraken', 'EUR', '', 1000, 10, '', '')
   ];
 
   testProcessLedger('Trade fiat base buy fiat with fees', assetRecords, ledgerRecords, 'Kraken', eur, 990);
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'EUR', '', 1000, '', '', '')
-  ];
-
-  testProcessLedger('Trade fiat base buy fiat no fees', assetRecords, ledgerRecords, 'Kraken', eur, 1000);
-
-  ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 1000, 10, 'Kraken', 'USD', '', 1200, 10, '', '')
   ];
 
   testProcessLedger('Trade fiat base sell fiat with fees', assetRecords, ledgerRecords, 'Kraken', eur, -1010);
-
-  ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 1000, '', 'Kraken', 'USD', '', 1200, '', '', '')
-  ];
-
-  testProcessLedger('Trade fiat base sell fiat no fees', assetRecords, ledgerRecords, 'Kraken', eur, -1000);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'GBP', '', 1000, 10, 'Kraken', 'EUR', '', 1200, 10, '', '')
@@ -713,18 +748,6 @@ function processLedgerTrade() {
   ];
 
   testProcessLedger('Trade exchange fiat with fees credit', assetRecords, ledgerRecords, 'Kraken', eur, 1190);
-
-  ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'GBP', '', 1000, '', 'Kraken', 'EUR', '', 1200, '', '', '')
-  ];
-
-  testProcessLedger('Trade exchange fiat no fees debit', assetRecords, ledgerRecords, 'Kraken', gbp, -1000);
-
-  ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'GBP', '', 1000, '', 'Kraken', 'EUR', '', 1200, '', '', '')
-  ];
-
-  testProcessLedger('Trade exchange fiat no fees credit', assetRecords, ledgerRecords, 'Kraken', eur, 1200);
 }
 
 function processLedgerTradeZeroAmount() {

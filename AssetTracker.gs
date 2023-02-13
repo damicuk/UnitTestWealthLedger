@@ -12,7 +12,6 @@ function testAssetTracker() {
     assert.equal(list[0], 'Apples', 'ABC comparator first item');
     assert.equal(list[3], 'Dates', 'ABC comparator last item ');
 
-
   });
 
   QUnit.test('Apportion Integer', function (assert) {

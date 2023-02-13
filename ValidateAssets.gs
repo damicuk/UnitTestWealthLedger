@@ -59,30 +59,48 @@ function validateAssets() {
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ABC!', 'Stock', 0, '', '', '', '')
+    new AssetRecord('ABCDEFGHIJKLMNOPQRSTUVWXYZA', 'Stock', 0, '', '', '', '')
   ];
 
-  validationError = new ValidationError(`Assets row 3: Asset (ABC!) format is invalid.\nInput must be 1-26 characters [A-Za-z0-9_#$/:@].`, 3, 'ticker');
-
-  testValidateAssets('Invalid asset format - invalid character', assetRecords, validationError);
-
-  assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ABCDEFGHIJKLMNOPQRSTU_#$/:@', 'Stock', 0, '', '', '', '')
-  ];
-
-  validationError = new ValidationError(`Assets row 3: Asset (ABCDEFGHIJKLMNOPQRSTU_#$/:@) format is invalid.\nInput must be 1-26 characters [A-Za-z0-9_#$/:@].`, 3, 'ticker');
+  validationError = new ValidationError(`Assets row 3: Asset (ABCDEFGHIJKLMNOPQRSTUVWXYZA) format is invalid.\nInput must be 1-26 characters, not starting or ending with a space.`, 3, 'ticker');
 
   testValidateAssets('Invalid asset format - too long', assetRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ABCDEFGHIJKLMNOPQRST_#$/:@', 'Stock', 0, '', '', '', '')
+    new AssetRecord(' ABC', 'Stock', 0, '', '', '', '')
+  ];
+
+  validationError = new ValidationError(`Assets row 3: Asset ( ABC) format is invalid.\nInput must be 1-26 characters, not starting or ending with a space.`, 3, 'ticker');
+
+  testValidateAssets('Invalid asset format - starts with space', assetRecords, validationError);
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
+    new AssetRecord('ABC ', 'Stock', 0, '', '', '', '')
+  ];
+
+  validationError = new ValidationError(`Assets row 3: Asset (ABC ) format is invalid.\nInput must be 1-26 characters, not starting or ending with a space.`, 3, 'ticker');
+
+  testValidateAssets('Invalid asset format - ends with space', assetRecords, validationError);
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
+    new AssetRecord(`A1 !"#$%&'()*+,-./:;<=>?@_`, 'Stock', 0, '', '', '', '')
   ];
 
   validationError = null;
 
-  testValidateAssets('Valid asset format', assetRecords, validationError);
+  testValidateAssets('Valid asset format - long', assetRecords, validationError);
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
+    new AssetRecord('A', 'Stock', 0, '', '', '', '')
+  ];
+
+  validationError = null;
+
+  testValidateAssets('Valid asset format - short', assetRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
@@ -95,34 +113,34 @@ function validateAssets() {
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'ABC!', 0, '', '', '', '')
+    new AssetRecord('LMN', 'ABCDEFGHIJKLMNOPQRSTUVWXYZA', 0, '', '', '', '')
   ];
 
-  validationError = new ValidationError(`Assets row 3: Asset type (ABC!) format is invalid.\nInput must be between 1 and 20 characters [A-Za-z0-9_-].\nSpaces between characters allowed.`, 3, 'assetType');
-
-  testValidateAssets('Invalid asset type format - invalid character', assetRecords, validationError);
-
-  assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', ' A', 0, '', '', '', '')
-  ];
-
-  validationError = new ValidationError(`Assets row 3: Asset type ( A) format is invalid.\nInput must be between 1 and 20 characters [A-Za-z0-9_-].\nSpaces between characters allowed.`, 3, 'assetType');
-
-  testValidateAssets('Invalid asset type format - starts with space', assetRecords, validationError);
-
-  assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'A BCDEFGHIJKLMNOPQR_-', 0, '', '', '', '')
-  ];
-
-  validationError = new ValidationError(`Assets row 3: Asset type (A BCDEFGHIJKLMNOPQR_-) format is invalid.\nInput must be between 1 and 20 characters [A-Za-z0-9_-].\nSpaces between characters allowed.`, 3, 'assetType');
+  validationError = new ValidationError(`Assets row 3: Asset type (ABCDEFGHIJKLMNOPQRSTUVWXYZA) format is invalid.\nInput must be 1-26 characters, not starting or ending with a space.`, 3, 'assetType');
 
   testValidateAssets('Invalid asset type format - too long', assetRecords, validationError);
 
   assetRecords = [
     new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'A BCDEFGHIJKLMNOPQ_-', 0, '', '', '', '')
+    new AssetRecord('LMN', ' ABC', 0, '', '', '', '')
+  ];
+
+  validationError = new ValidationError(`Assets row 3: Asset type ( ABC) format is invalid.\nInput must be 1-26 characters, not starting or ending with a space.`, 3, 'assetType');
+
+  testValidateAssets('Invalid asset type format - starts with space', assetRecords, validationError);
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
+    new AssetRecord('LMN', 'ABC ', 0, '', '', '', '')
+  ];
+
+  validationError = new ValidationError(`Assets row 3: Asset type (ABC ) format is invalid.\nInput must be 1-26 characters, not starting or ending with a space.`, 3, 'assetType');
+
+  testValidateAssets('Invalid asset type format - ends with space', assetRecords, validationError);
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
+    new AssetRecord('LMN', `A1 !"#$%&'()*+,-./:;<=>?@_`, 0, '', '', '', '')
   ];
 
   validationError = null;

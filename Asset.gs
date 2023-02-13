@@ -5,43 +5,24 @@ function testAsset() {
   QUnit.test('Ticker', function (assert) {
 
     assert.equal(Asset.tickerRegExp.test('A'), true, 'Ticker A');
-    assert.equal(Asset.tickerRegExp.test('AAAAAAAAAAAAAAAAAAAAAAAAAA'), true, 'Ticker AAAAAAAAAAAAAAAAAAAAAAAAAA');
-    assert.equal(Asset.tickerRegExp.test('#'), true, 'Ticker #');
-    assert.equal(Asset.tickerRegExp.test('$'), true, 'Ticker $');
-    assert.equal(Asset.tickerRegExp.test('/'), true, 'Ticker /');
-    assert.equal(Asset.tickerRegExp.test(':'), true, 'Ticker :');
-    assert.equal(Asset.tickerRegExp.test('@'), true, 'Ticker @');
-    assert.equal(Asset.tickerRegExp.test('AAAAAAAAAAAAAAAAAAAAAAAAAAA'), false, 'Ticker AAAAAAAAAAAAAAAAAAAAAAAAAAA');
+    assert.equal(Asset.tickerRegExp.test('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), true, 'Ticker ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+    assert.equal(Asset.tickerRegExp.test(`A1 !"#$%&'()*+,-./:;<=>?@_`), true, `Ticker A1 !"#$%&'()*+,-./:;<=>?@_`);
+    assert.equal(Asset.tickerRegExp.test('ABCDEFGHIJKLMNOPQRSTUVWXYZA'), false, 'Ticker ABCDEFGHIJKLMNOPQRSTUVWXYZA');
     assert.equal(Asset.tickerRegExp.test(' '), false, 'Ticker space');
-    assert.equal(Asset.tickerRegExp.test('A A'), false, 'Ticker A A');
-    assert.equal(Asset.tickerRegExp.test('A-A'), false, 'Ticker A-A');
+    assert.equal(Asset.tickerRegExp.test(' ABC'), false, 'Ticker A A');
+    assert.equal(Asset.tickerRegExp.test('ABC '), false, 'Ticker A-A');
+
   });
 
   QUnit.test('Asset Type', function (assert) {
 
     assert.equal(Asset.assetTypeRegExp.test('A'), true, 'Asset type A');
-    assert.equal(Asset.assetTypeRegExp.test('AAAAAAAAAAAAAAAAAAAA'), true, 'Asset type AAAAAAAAAAAAAAAAAAAA');
-    assert.equal(Asset.assetTypeRegExp.test('A A'), true, 'Asset type A A');
-    assert.equal(Asset.assetTypeRegExp.test('A-A'), true, 'Asset type A-A');
-    assert.equal(Asset.assetTypeRegExp.test('A-'), true, 'Asset type A-');
-    assert.equal(Asset.assetTypeRegExp.test('-A'), true, 'Asset type -A');
-    assert.equal(Asset.assetTypeRegExp.test('-'), true, 'Asset type -');
-    assert.equal(Asset.assetTypeRegExp.test('AAAAAAAAAAAAAAAAAAAAA'), false, 'Asset type AAAAAAAAAAAAAAAAAAAAA');
+    assert.equal(Asset.assetTypeRegExp.test('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), true, 'Asset type ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+    assert.equal(Asset.assetTypeRegExp.test(`A1 !"#$%&'()*+,-./:;<=>?@_`), true, `Asset type A1 !"#$%&'()*+,-./:;<=>?@_`);
+    assert.equal(Asset.assetTypeRegExp.test('ABCDEFGHIJKLMNOPQRSTUVWXYZA'), false, 'Asset type ABCDEFGHIJKLMNOPQRSTUVWXYZA');
     assert.equal(Asset.assetTypeRegExp.test(' '), false, 'Asset type space');
-    assert.equal(Asset.assetTypeRegExp.test('A '), false, 'Asset type A space');
-    assert.equal(Asset.assetTypeRegExp.test(' A'), false, 'Asset type space A');
-    assert.equal(Asset.assetTypeRegExp.test('A$A'), false, 'Asset type A$A');
-    assert.equal(Asset.assetTypeRegExp.test('A@A'), false, 'Asset type A@A');
-    assert.equal(Asset.assetTypeRegExp.test('A#A'), false, 'Asset type A#A');
-    assert.equal(Asset.assetTypeRegExp.test('A$'), false, 'Asset type A$');
-    assert.equal(Asset.assetTypeRegExp.test('A@'), false, 'Asset type A@');
-    assert.equal(Asset.assetTypeRegExp.test('A#'), false, 'Asset type A#');
-    assert.equal(Asset.assetTypeRegExp.test('$A'), false, 'Asset type $A');
-    assert.equal(Asset.assetTypeRegExp.test('@A'), false, 'Asset type @A');
-    assert.equal(Asset.assetTypeRegExp.test('#A'), false, 'Asset type #A');
-    assert.equal(Asset.assetTypeRegExp.test('$'), false, 'Asset type $');
-    assert.equal(Asset.assetTypeRegExp.test('@'), false, 'Asset type @');
-    assert.equal(Asset.assetTypeRegExp.test('#'), false, 'Asset type #');
+    assert.equal(Asset.assetTypeRegExp.test(' ABC'), false, 'Asset type A space');
+    assert.equal(Asset.assetTypeRegExp.test('ABC '), false, 'Asset type space A');
 
   });
 
