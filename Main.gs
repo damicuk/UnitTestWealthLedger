@@ -12,6 +12,7 @@ const TESTS_ = [
   // validateLedgerGift,
   // validateLedgerFee,
   // validateLedgerAdjust,
+  // validateLedgerInflation,
 
   // processLedgerAssetAccountError,
   // processLedgerBasic,
@@ -25,6 +26,7 @@ const TESTS_ = [
   // processLedgerGift,
   // processLedgerFee,
   // processLedgerAdjust,
+  // processLedgerInflation,
 
   // testAssetTracker,
   // testAsset,

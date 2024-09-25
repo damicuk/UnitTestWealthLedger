@@ -40,13 +40,13 @@ function validateLedgerGeneral() {
   let validationError;
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'ABC', '', 200, '', 'IB', 'USD', '', 600, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'ABC', '', 200, '', 'IB', 'USD', '', 600, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 4: Debit asset (ABC) is not found in the Assets sheet.`, 4, 'debitAsset');
@@ -54,11 +54,11 @@ function validateLedgerGeneral() {
   testValidateLedger('Debit asset not found', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Credit asset (LMN) is not found in the Assets sheet.`, 3, 'creditAsset');
@@ -66,12 +66,12 @@ function validateLedgerGeneral() {
   testValidateLedger('Credit asset not found', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord('#', 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '')
+    new LedgerRecord('#', 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Invalid date.`, 3, 'date');
@@ -79,14 +79,14 @@ function validateLedgerGeneral() {
   testValidateLedger('Invalid date', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 3), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 3), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 5: Dates must be in chronological or reverse chronological order.`, 5, 'date');
@@ -94,12 +94,12 @@ function validateLedgerGeneral() {
   testValidateLedger('Dates not chronological or reverse chronological order', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(3020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '')
+    new LedgerRecord(new Date(3020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Date must be in the past.`, 3, 'date');
@@ -107,12 +107,12 @@ function validateLedgerGeneral() {
   testValidateLedger('Date in future', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), '', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), '', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Ledger row 3: No action specified.`, 3, 'action');
@@ -120,13 +120,13 @@ function validateLedgerGeneral() {
   testValidateLedger('No action', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '#', 2000, '', 'IB', 'LMN', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '#', 2000, '', 'IB', 'LMN', '', 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Debit exchange rate is not valid (number or blank).`, 3, 'debitExRate');
@@ -134,12 +134,12 @@ function validateLedgerGeneral() {
   testValidateLedger('Invalid debit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', '#', '', 'IB', 'LMN', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', '#', '', 'IB', 'LMN', '', 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Debit amount is not valid (number or blank).`, 3, 'debitAmount');
@@ -147,12 +147,12 @@ function validateLedgerGeneral() {
   testValidateLedger('Invalid debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '#', 'IB', 'LMN', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '#', 'IB', 'LMN', '', 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Debit fee is not valid (number or blank).`, 3, 'debitFee');
@@ -160,13 +160,13 @@ function validateLedgerGeneral() {
   testValidateLedger('Invalid debit fee', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 2000, '', 'IB', 'LMN', '#', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 2000, '', 'IB', 'LMN', '#', 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Credit exchange rate is not valid (number or blank).`, 3, 'creditExRate');
@@ -174,12 +174,12 @@ function validateLedgerGeneral() {
   testValidateLedger('Invalid credit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', '#', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', '#', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Credit amount is not valid (number or blank).`, 3, 'creditAmount');
@@ -187,12 +187,12 @@ function validateLedgerGeneral() {
   testValidateLedger('Invalid credit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '#', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '#', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Credit fee is not valid (number or blank).`, 3, 'creditFee');
@@ -200,12 +200,12 @@ function validateLedgerGeneral() {
   testValidateLedger('Invalid credit fee', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '#')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '#', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Lot matching (#) is not valid (FIFO, LIFO, HIFO, LOFO) or blank.`, 3, 'lotMatching');
@@ -213,11 +213,11 @@ function validateLedgerGeneral() {
   testValidateLedger('Invalid lot matching', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Sleep', '', '', '', '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Sleep', '', '', '', '', '', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Ledger row 3: Action (Sleep) is invalid.`, 3, 'action');
@@ -225,14 +225,14 @@ function validateLedgerGeneral() {
   testValidateLedger('Invalid Action', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 3), 'Trade', 'USD', '', -2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '')
+    new LedgerRecord(new Date(2020, 3, 3), 'Trade', 'USD', '', -2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Debit amount must be greater than or equal to 0.`, 3, 'debitAmount');
@@ -240,14 +240,14 @@ function validateLedgerGeneral() {
   testValidateLedger('Reverse chronological order with error', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 1), 'Skip', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', -2000, '', 'IB', 'LMN', '', 1000, 0, '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 1), 'Skip', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', -2000, '', 'IB', 'LMN', '', 1000, 0, '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 5: Debit amount must be greater than or equal to 0.`, 5, 'debitAmount');
@@ -255,14 +255,14 @@ function validateLedgerGeneral() {
   testValidateLedger('Skip then error', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 1), 'Skip', 'USD', '', -2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 1), 'Skip', 'USD', '', -2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', '')
   ];
 
   validationError = null;
@@ -270,14 +270,14 @@ function validateLedgerGeneral() {
   testValidateLedger('Skip error valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 1), 'Stop', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', -2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 1), 'Stop', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', -2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
   ];
 
   validationError = null;
@@ -294,12 +294,12 @@ function validateLedgerTransfer() {
   let validationError;
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, 10, 'IB', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, 10, 'IB', '', '', '', '', '', '', '')
   ];
 
   validationError = null;
@@ -307,12 +307,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat to bank with fee valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, '', 'IB', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, '', 'IB', '', '', '', '', '', '', '')
   ];
 
   validationError = null;
@@ -320,12 +320,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat to bank no fee valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', '', '', '', '', '', 'EUR', '', 2000, '', 'IB', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', '', '', '', '', '', 'EUR', '', 2000, '', 'IB', '', '')
   ];
 
   validationError = null;
@@ -333,12 +333,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat from bank valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, 10, 'IB', '', '', '', '', 'Kraken', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, 10, 'IB', '', '', '', '', 'Kraken', '', '')
   ];
 
   validationError = null;
@@ -346,12 +346,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat with fee valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, '', 'IB', '', '', '', '', 'Kraken', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, '', 'IB', '', '', '', '', 'Kraken', '', '')
   ];
 
   validationError = null;
@@ -359,13 +359,13 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat no fee valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2010, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'ADA', '', 2000, 10, 'Kraken', '', '', '', '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2010, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'ADA', '', 2000, 10, 'Kraken', '', '', '', '', 'Ledger', '', '')
   ];
 
   validationError = null;
@@ -373,13 +373,13 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer asset with fee valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'ADA', '', 2000, '', 'Kraken', '', '', '', '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'ADA', '', 2000, '', 'Kraken', '', '', '', '', 'Ledger', '', '')
   ];
 
   validationError = null;
@@ -387,11 +387,11 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer asset no fee valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', '', '', 2000, '', 'IB', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', '', '', 2000, '', 'IB', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: No debit or credit asset specified.`, 3, 'debitAsset');
@@ -399,12 +399,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer no debit or credit asset', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, '', 'IB', 'USD', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, '', 'IB', 'USD', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Either debit or credit asset must be specified, but not both.`, 3, 'debitAsset');
@@ -412,13 +412,13 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer both debit and credit asset', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', '', '', '', '', '', 'ADA', '', 2000, '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', '', '', '', '', '', 'ADA', '', 2000, '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 4: Credit asset must be fiat (or blank).`, 4, 'creditAsset');
@@ -426,12 +426,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer asset credit asset', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', 1.2, 2000, '', 'IB', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', 1.2, 2000, '', 'IB', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Leave debit exchange rate blank.`, 3, 'debitExRate');
@@ -439,12 +439,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer debit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, '', 'IB', '', 1.2, '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, '', 'IB', '', 1.2, '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Leave credit exchange rate blank.`, 3, 'creditExRate');
@@ -452,12 +452,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer credit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, '', 'IB', '', '', '', 10, '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, '', 'IB', '', '', '', 10, '', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Leave credit fee blank.`, 3, 'creditFee');
@@ -465,12 +465,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer credit fee', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', '', '', 2000, '', '', 'EUR', '', 2000, '', 'IB', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', '', '', 2000, '', '', 'EUR', '', 2000, '', 'IB', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Leave debit amount blank when credit asset is specified.`, 3, 'debitAmount');
@@ -478,12 +478,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat from bank debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', '', '', '', 10, '', 'EUR', '', 2000, '', 'IB', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', '', '', '', 10, '', 'EUR', '', 2000, '', 'IB', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Leave debit fee blank when credit asset is specified.`, 3, 'debitFee');
@@ -491,12 +491,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat from bank debit fee', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', '', '', '', '', 'Kraken', 'EUR', '', 2000, '', 'IB', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', '', '', '', '', 'Kraken', 'EUR', '', 2000, '', 'IB', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Leave debit wallet blank when credit asset is specified.`, 3, 'debitWalletName');
@@ -504,12 +504,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat from bank debit wallet', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', '', '', '', '', '', 'EUR', '', '', '', 'IB', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', '', '', '', '', '', 'EUR', '', '', '', 'IB', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Credit amount must be specified when credit asset is specified.`, 3, 'creditAmount');
@@ -517,12 +517,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat from bank no credit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', '', '', '', '', '', 'EUR', '', -2000, '', 'IB', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', '', '', '', '', '', 'EUR', '', -2000, '', 'IB', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Credit amount must be greater than 0 when credit asset is specified.`, 3, 'creditAmount');
@@ -530,12 +530,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat from bank negative credit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', '', '', '', '', '', 'EUR', '', 0, '', 'IB', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', '', '', '', '', '', 'EUR', '', 0, '', 'IB', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Credit amount must be greater than 0 when credit asset is specified.`, 3, 'creditAmount');
@@ -543,12 +543,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat from bank zero credit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', '', '', '', '', '', 'EUR', '', 2000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', '', '', '', '', '', 'EUR', '', 2000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Credit wallet must be specified when credit asset is specified.`, 3, 'creditWalletName');
@@ -556,12 +556,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat from bank no credit wallet', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', '', '', 'IB', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', '', '', 'IB', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Debit amount must be specified when debit asset is specified.`, 3, 'debitAmount');
@@ -569,12 +569,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat to bank no debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', -2000, '', 'IB', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', -2000, '', 'IB', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Debit amount must be greater than 0 when debit asset is specified.`, 3, 'debitAmount');
@@ -582,12 +582,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat to bank negative debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 0, '', 'IB', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 0, '', 'IB', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Debit amount must be greater than 0 when debit asset is specified.`, 3, 'debitAmount');
@@ -595,12 +595,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat to bank zero debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, -10, 'IB', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, -10, 'IB', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Debit fee must be greater than or equal to 0 (or blank) when debit asset is specified.`, 3, 'debitFee');
@@ -608,12 +608,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat to bank negative debit fee', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, 0, 'IB', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, 0, 'IB', '', '', '', '', '', '', '')
   ];
 
   validationError = null;
@@ -621,12 +621,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat to bank zero debit fee valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, '', '', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Debit wallet must be specified when debit asset is specified.`, 3, 'debitWalletName');
@@ -634,12 +634,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat to bank no debit wallet', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, '', 'IB', '', '', 2000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, '', 'IB', '', '', 2000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Leave credit amount blank when credit asset is not specified.`, 3, 'creditAmount');
@@ -647,12 +647,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat to bank credit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', '', '', 'IB', '', '', '', '', 'Kraken', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', '', '', 'IB', '', '', '', '', 'Kraken', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Debit amount must be specified when debit asset is specified.`, 3, 'debitAmount');
@@ -660,12 +660,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat no debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', -2000, '', 'IB', '', '', '', '', 'Kraken', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', -2000, '', 'IB', '', '', '', '', 'Kraken', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Debit amount must be greater than 0 when debit asset is specified.`, 3, 'debitAmount');
@@ -673,12 +673,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat negative debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 0, '', 'IB', '', '', '', '', 'Kraken', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 0, '', 'IB', '', '', '', '', 'Kraken', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Debit amount must be greater than 0 when debit asset is specified.`, 3, 'debitAmount');
@@ -686,12 +686,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat zero debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, -10, 'IB', '', '', '', '', 'Kraken', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, -10, 'IB', '', '', '', '', 'Kraken', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Debit fee must be greater than or equal to 0 (or blank) when debit asset is specified.`, 3, 'debitFee');
@@ -699,12 +699,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat negative debit fee', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, 0, 'IB', '', '', '', '', 'Kraken', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, 0, 'IB', '', '', '', '', 'Kraken', '', '')
   ];
 
   validationError = null;
@@ -712,12 +712,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat zero debit fee valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, '', '', '', '', '', '', 'Kraken', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, '', '', '', '', '', '', 'Kraken', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Debit wallet must be specified when debit asset is specified.`, 3, 'debitWalletName');
@@ -725,12 +725,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat no debit wallet', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, '', 'IB', '', '', 2000, '', 'Kraken', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, '', 'IB', '', '', 2000, '', 'Kraken', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Leave credit amount blank when credit asset is not specified.`, 3, 'creditAmount');
@@ -738,12 +738,12 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat credit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, '', 'IB', '', '', '', '', 'IB', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'EUR', '', 2000, '', 'IB', '', '', '', '', 'IB', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 3: Debit wallet (IB) and credit wallet (IB) must be different.`, 3, 'debitWalletName');
@@ -751,13 +751,13 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer fiat same debit and credit wallet', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'ADA', '', '', '', 'Kraken', '', '', '', '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'ADA', '', '', '', 'Kraken', '', '', '', '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 4: Debit amount must be specified when debit asset is specified.`, 4, 'debitAmount');
@@ -765,13 +765,13 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer asset no debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'ADA', '', -2000, '', 'Kraken', '', '', '', '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'ADA', '', -2000, '', 'Kraken', '', '', '', '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 4: Debit amount must be greater than 0 when debit asset is specified.`, 4, 'debitAmount');
@@ -779,13 +779,13 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer asset negative debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'ADA', '', 0, '', 'Kraken', '', '', '', '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'ADA', '', 0, '', 'Kraken', '', '', '', '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 4: Debit amount must be greater than 0 when debit asset is specified.`, 4, 'debitAmount');
@@ -793,13 +793,13 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer asset zero debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'ADA', '', 2000, -10, 'Kraken', '', '', '', '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'ADA', '', 2000, -10, 'Kraken', '', '', '', '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 4: Debit fee must be greater than or equal to 0 (or blank) when debit asset is specified.`, 4, 'debitFee');
@@ -807,13 +807,13 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer asset negative debit fee', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'ADA', '', 2000, 0, 'Kraken', '', '', '', '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'ADA', '', 2000, 0, 'Kraken', '', '', '', '', 'Ledger', '', '')
   ];
 
   validationError = null;
@@ -821,13 +821,13 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer asset zero debit fee valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'ADA', '', 2000, '', '', '', '', '', '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'ADA', '', 2000, '', '', '', '', '', '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 4: Debit wallet must be specified when debit asset is specified.`, 4, 'debitWalletName');
@@ -835,13 +835,13 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer asset no debit wallet', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'ADA', '', 2000, '', 'Kraken', '', '', 2000, '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'ADA', '', 2000, '', 'Kraken', '', '', 2000, '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 4: Leave credit amount blank when credit asset is not specified.`, 4, 'creditAmount');
@@ -849,13 +849,13 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer asset credit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'ADA', '', 2000, '', 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'ADA', '', 2000, '', 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 4: Credit wallet must be specified when debit asset is not fiat.`, 4, 'creditWalletName');
@@ -863,13 +863,13 @@ function validateLedgerTransfer() {
   testValidateLedger('Transfer asset no credit wallet', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'ADA', '', 2000, '', 'Kraken', '', '', '', '', 'Kraken', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'Kraken', 'ADA', '', 2000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 1), 'Transfer', 'ADA', '', 2000, '', 'Kraken', '', '', '', '', 'Kraken', '', '')
   ];
 
   validationError = new ValidationError(`Transfer row 4: Debit wallet (Kraken) and credit wallet (Kraken) must be different.`, 4, 'debitWalletName');
@@ -886,12 +886,12 @@ function validateLedgerTrade() {
   let validationError;
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, 10, 'Kraken', 'ADA', '', 1000, 10, '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, 10, 'Kraken', 'ADA', '', 1000, 10, '', '', '')
   ];
 
   validationError = null;
@@ -899,12 +899,12 @@ function validateLedgerTrade() {
   testValidateLedger('Trade fiat base buy with fees valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', '')
   ];
 
   validationError = null;
@@ -912,13 +912,13 @@ function validateLedgerTrade() {
   testValidateLedger('Trade fiat base buy no fees valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, 10, 'Kraken', 'ADA', '', 1020, 10, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', '', 1000, 10, 'Kraken', 'USD', '', 1200, 10, '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, 10, 'Kraken', 'ADA', '', 1020, 10, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', '', 1000, 10, 'Kraken', 'USD', '', 1200, 10, '', '', '')
   ];
 
   validationError = null;
@@ -926,13 +926,13 @@ function validateLedgerTrade() {
   testValidateLedger('Trade fiat base sell with fees valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', '', 1000, '', 'Kraken', 'USD', '', 1200, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', '', 1000, '', 'Kraken', 'USD', '', 1200, '', '', '', '')
   ];
 
   validationError = null;
@@ -940,13 +940,13 @@ function validateLedgerTrade() {
   testValidateLedger('Trade fiat base sell no fees valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 1.2, 1200, 10, 'Kraken', 'ADA', '', 1000, 10, '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 1.2, 1200, 10, 'Kraken', 'ADA', '', 1000, 10, '', '', '')
   ];
 
   validationError = null;
@@ -954,13 +954,13 @@ function validateLedgerTrade() {
   testValidateLedger('Trade fiat buy with fees debit exrate valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 1.2, 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 1.2, 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', '')
   ];
 
   validationError = null;
@@ -968,14 +968,14 @@ function validateLedgerTrade() {
   testValidateLedger('Trade fiat buy no fees debit exrate valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 1200, '', 'Kraken', 'ADA', 1.2, 1010, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', 1.2, 1000, 10, 'Kraken', 'EUR', '', 1200, 10, '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 1200, '', 'Kraken', 'ADA', 1.2, 1010, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', 1.2, 1000, 10, 'Kraken', 'EUR', '', 1200, 10, '', '', '')
   ];
 
   validationError = null;
@@ -983,14 +983,14 @@ function validateLedgerTrade() {
   testValidateLedger('Trade fiat sell with fees debit exrate valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 1200, '', 'Kraken', 'ADA', 1.2, 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', 1.2, 1000, '', 'Kraken', 'EUR', '', 1200, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 1200, '', 'Kraken', 'ADA', 1.2, 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', 1.2, 1000, '', 'Kraken', 'EUR', '', 1200, '', '', '', '')
   ];
 
   validationError = null;
@@ -998,13 +998,13 @@ function validateLedgerTrade() {
   testValidateLedger('Trade fiat sell no fees debit exrate valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 1200, 10, 'Kraken', 'ADA', 1.2, 1000, 10, '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 1200, 10, 'Kraken', 'ADA', 1.2, 1000, 10, '', '', '')
   ];
 
   validationError = null;
@@ -1012,13 +1012,13 @@ function validateLedgerTrade() {
   testValidateLedger('Trade fiat buy with fees credit exrate valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 1200, '', 'Kraken', 'ADA', 1.2, 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 1200, '', 'Kraken', 'ADA', 1.2, 1000, '', '', '', '')
   ];
 
   validationError = null;
@@ -1026,14 +1026,14 @@ function validateLedgerTrade() {
   testValidateLedger('Trade fiat buy no fees credit exrate valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 1.2, 1200, '', 'Kraken', 'ADA', '', 1010, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', '', 1000, 10, 'Kraken', 'EUR', 1.2, 1200, 10, '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 1.2, 1200, '', 'Kraken', 'ADA', '', 1010, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', '', 1000, 10, 'Kraken', 'EUR', 1.2, 1200, 10, '', '', '')
   ];
 
   validationError = null;
@@ -1041,14 +1041,14 @@ function validateLedgerTrade() {
   testValidateLedger('Trade fiat sell with fees credit exrate valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 1.2, 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', '', 1000, '', 'Kraken', 'EUR', 1.2, 1200, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 1.2, 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', '', 1000, '', 'Kraken', 'EUR', 1.2, 1200, '', '', '', '')
   ];
 
   validationError = null;
@@ -1056,14 +1056,14 @@ function validateLedgerTrade() {
   testValidateLedger('Trade fiat sell no fees credit exrate valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', ''),
-    new AssetRecord('ALGO', 'Crypto', 8, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', ''),
+    new AssetRecord('ALGO', 'Crypto', 8, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1010, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', 1.2, 1000, 10, 'Kraken', 'ALGO', '', 1200, 10, '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1010, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', 1.2, 1000, 10, 'Kraken', 'ALGO', '', 1200, 10, '', '', '')
   ];
 
   validationError = null;
@@ -1071,14 +1071,14 @@ function validateLedgerTrade() {
   testValidateLedger('Trade exchange assets with fees debit exrate valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', ''),
-    new AssetRecord('ALGO', 'Crypto', 8, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', ''),
+    new AssetRecord('ALGO', 'Crypto', 8, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', 1.2, 1000, '', 'Kraken', 'ALGO', '', 1200, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', 1.2, 1000, '', 'Kraken', 'ALGO', '', 1200, '', '', '', '')
   ];
 
   validationError = null;
@@ -1086,14 +1086,14 @@ function validateLedgerTrade() {
   testValidateLedger('Trade exchange assets no fees debit exrate valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', ''),
-    new AssetRecord('ALGO', 'Crypto', 8, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', ''),
+    new AssetRecord('ALGO', 'Crypto', 8, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1010, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', '', 1000, 10, 'Kraken', 'ALGO', 1.2, 1200, 10, '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1010, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', '', 1000, 10, 'Kraken', 'ALGO', 1.2, 1200, 10, '', '', '')
   ];
 
   validationError = null;
@@ -1101,14 +1101,14 @@ function validateLedgerTrade() {
   testValidateLedger('Trade exchange assets with fees credit exrate valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', ''),
-    new AssetRecord('ALGO', 'Crypto', 8, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', ''),
+    new AssetRecord('ALGO', 'Crypto', 8, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', '', 1000, '', 'Kraken', 'ALGO', 1.2, 1200, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'ADA', '', 1000, '', 'Kraken', 'ALGO', 1.2, 1200, '', '', '', '')
   ];
 
   validationError = null;
@@ -1116,12 +1116,12 @@ function validateLedgerTrade() {
   testValidateLedger('Trade exchange assets no fees credit exrate valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, 10, 'Kraken', 'EUR', '', 1000, 10, '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, 10, 'Kraken', 'EUR', '', 1000, 10, '', '', '')
   ];
 
   validationError = null;
@@ -1129,12 +1129,12 @@ function validateLedgerTrade() {
   testValidateLedger('Trade fiat base buy fiat with fees valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'EUR', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'EUR', '', 1000, '', '', '', '')
   ];
 
   validationError = null;
@@ -1142,12 +1142,12 @@ function validateLedgerTrade() {
   testValidateLedger('Trade fiat base buy fiat no fees valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 1000, 10, 'Kraken', 'USD', '', 1200, 10, '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 1000, 10, 'Kraken', 'USD', '', 1200, 10, '', '', '')
   ];
 
   validationError = null;
@@ -1155,12 +1155,12 @@ function validateLedgerTrade() {
   testValidateLedger('Trade fiat base sell fiat with fees valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 1000, '', 'Kraken', 'USD', '', 1200, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 1000, '', 'Kraken', 'USD', '', 1200, '', '', '', '')
   ];
 
   validationError = null;
@@ -1168,13 +1168,13 @@ function validateLedgerTrade() {
   testValidateLedger('Trade fiat base sell fiat no fees valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', ''),
-    new AssetRecord('GBP', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', ''),
+    new AssetRecord('GBP', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'GBP', '', 1000, 10, 'Kraken', 'EUR', '', 1200, 10, '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'GBP', '', 1000, 10, 'Kraken', 'EUR', '', 1200, 10, '', '', '')
   ];
 
   validationError = null;
@@ -1182,13 +1182,13 @@ function validateLedgerTrade() {
   testValidateLedger('Trade exchange fiat with fees valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', ''),
-    new AssetRecord('GBP', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', ''),
+    new AssetRecord('GBP', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'GBP', '', 1000, '', 'Kraken', 'EUR', '', 1200, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'GBP', '', 1000, '', 'Kraken', 'EUR', '', 1200, '', '', '', '')
   ];
 
   validationError = null;
@@ -1196,12 +1196,12 @@ function validateLedgerTrade() {
   testValidateLedger('Trade exchange fiat no fees valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', '', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', '', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: No debit asset specified.`, 3, 'debitAsset');
@@ -1209,12 +1209,12 @@ function validateLedgerTrade() {
   testValidateLedger('Trade no debit asset', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', '', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', '', '', 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: No credit asset specified.`, 3, 'creditAsset');
@@ -1222,12 +1222,12 @@ function validateLedgerTrade() {
   testValidateLedger('Trade no credit asset', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'LMN', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'LMN', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Debit asset (LMN) and credit asset (LMN) must be different.`, 3, 'debitAsset');
@@ -1235,12 +1235,12 @@ function validateLedgerTrade() {
   testValidateLedger('Trade same debit and credit asset', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', '', '', 'IB', 'LMN', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', '', '', 'IB', 'LMN', '', 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: No debit amount specified.`, 3, 'debitAmount');
@@ -1248,12 +1248,12 @@ function validateLedgerTrade() {
   testValidateLedger('Trade no debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', -2000, '', 'IB', 'LMN', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', -2000, '', 'IB', 'LMN', '', 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Debit amount must be greater than or equal to 0.`, 3, 'debitAmount');
@@ -1261,12 +1261,12 @@ function validateLedgerTrade() {
   testValidateLedger('Trade negative debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 0, '', 'IB', 'LMN', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 0, '', 'IB', 'LMN', '', 1000, '', '', '', '')
   ];
 
   validationError = null;
@@ -1274,12 +1274,12 @@ function validateLedgerTrade() {
   testValidateLedger('Trade zero debit amount valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, -10, 'IB', 'LMN', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, -10, 'IB', 'LMN', '', 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Debit fee must be greater than or equal to 0 (or blank).`, 3, 'debitFee');
@@ -1287,12 +1287,12 @@ function validateLedgerTrade() {
   testValidateLedger('Trade negative debit fee', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, 0, 'IB', 'LMN', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, 0, 'IB', 'LMN', '', 1000, '', '', '', '')
   ];
 
   validationError = null;
@@ -1300,12 +1300,12 @@ function validateLedgerTrade() {
   testValidateLedger('Trade zero debit fee valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', '', 'LMN', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', '', 'LMN', '', 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: No debit wallet specified.`, 3, 'debitWalletName');
@@ -1313,12 +1313,12 @@ function validateLedgerTrade() {
   testValidateLedger('Trade no debit wallet', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: No credit amount specified.`, 3, 'creditAmount');
@@ -1326,12 +1326,12 @@ function validateLedgerTrade() {
   testValidateLedger('Trade no credit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', -1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', -1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Credit amount must be greater than or equal to 0.`, 3, 'creditAmount');
@@ -1339,12 +1339,12 @@ function validateLedgerTrade() {
   testValidateLedger('Trade negative credit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 0, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 0, '', '', '', '')
   ];
 
   validationError = null;
@@ -1352,12 +1352,12 @@ function validateLedgerTrade() {
   testValidateLedger('Trade zero credit amount valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, -10, '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, -10, '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Credit fee must be greater than or equal to 0 (or blank).`, 3, 'creditFee');
@@ -1365,12 +1365,12 @@ function validateLedgerTrade() {
   testValidateLedger('Trade negative credit fee', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 1001, '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 1001, '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Credit fee must be less than or equal to credit amount (or blank).`, 3, 'creditFee');
@@ -1378,12 +1378,12 @@ function validateLedgerTrade() {
   testValidateLedger('Trade Credit fee greater than credit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 1000, '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 1000, '', '', '')
   ];
 
   validationError = null;
@@ -1391,12 +1391,12 @@ function validateLedgerTrade() {
   testValidateLedger('Trade asset credit fee same as credit amount valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', 'Fidelity', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', 'Fidelity', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Leave credit wallet (Fidelity) blank. It is inferred from the debit wallet (IB).`, 3, 'creditWalletName');
@@ -1404,12 +1404,12 @@ function validateLedgerTrade() {
   testValidateLedger('Trade credit wallet', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', 1, 2000, '', 'IB', 'LMN', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', 1, 2000, '', 'IB', 'LMN', '', 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Debit asset is fiat base (USD). Leave debit exchange rate blank.`, 3, 'debitExRate');
@@ -1417,12 +1417,12 @@ function validateLedgerTrade() {
   testValidateLedger('Trade debit asset is fiat base and debit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', 1, 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', 1, 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Debit asset is fiat base (USD). Leave credit exchange rate blank.`, 3, 'creditExRate');
@@ -1430,13 +1430,13 @@ function validateLedgerTrade() {
   testValidateLedger('Trade debit asset is fiat base and credit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'LMN', 1, 200, '', 'IB', 'USD', '', 600, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'LMN', 1, 200, '', 'IB', 'USD', '', 600, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 4: Credit asset is fiat base (USD). Leave debit exchange rate blank.`, 4, 'debitExRate');
@@ -1444,13 +1444,13 @@ function validateLedgerTrade() {
   testValidateLedger('Trade credit asset is fiat base and debit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'LMN', '', 200, '', 'IB', 'USD', 1, 600, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'LMN', '', 200, '', 'IB', 'USD', 1, 600, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 4: Credit asset is fiat base (USD). Leave credit exchange rate blank.`, 4, 'creditExRate');
@@ -1458,13 +1458,13 @@ function validateLedgerTrade() {
   testValidateLedger('Trade credit asset is fiat base and credit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', ''),
-    new AssetRecord('GBP', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', ''),
+    new AssetRecord('GBP', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'GBP', 1.2, 1000, '', 'IB', 'EUR', '', 1200, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'GBP', 1.2, 1000, '', 'IB', 'EUR', '', 1200, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Fiat exchange: (GBP/EUR). Leave debit exchange rate blank.`, 3, 'debitExRate');
@@ -1472,13 +1472,13 @@ function validateLedgerTrade() {
   testValidateLedger('Trade fiat exchange and debit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', ''),
-    new AssetRecord('GBP', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', ''),
+    new AssetRecord('GBP', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 1200, '', 'IB', 'GBP', 1.2, 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 1200, '', 'IB', 'GBP', 1.2, 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Fiat exchange: (EUR/GBP). Leave credit exchange rate blank.`, 3, 'creditExRate');
@@ -1486,13 +1486,13 @@ function validateLedgerTrade() {
   testValidateLedger('Trade fiat exchange and credit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 1.2, 0, '', 'IB', 'LMN', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 1.2, 0, '', 'IB', 'LMN', '', 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Trade with zero debit amount. Leave debit exchange rate blank.`, 3, 'debitExRate');
@@ -1500,13 +1500,13 @@ function validateLedgerTrade() {
   testValidateLedger('Trade non fiat base non fiat-fiat zero debit amount and debit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 0, '', 'IB', 'LMN', 2.4, 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 0, '', 'IB', 'LMN', 2.4, 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Trade with zero debit amount. Leave credit exchange rate blank.`, 3, 'creditExRate');
@@ -1514,13 +1514,13 @@ function validateLedgerTrade() {
   testValidateLedger('Trade non fiat base non fiat-fiat zero debit amount and credit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 1.2, 2000, '', 'IB', 'LMN', '', 0, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 1.2, 2000, '', 'IB', 'LMN', '', 0, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Trade with zero credit amount. Leave debit exchange rate blank.`, 3, 'debitExRate');
@@ -1528,13 +1528,13 @@ function validateLedgerTrade() {
   testValidateLedger('Trade non fiat base non fiat-fiat zero credit amount and debit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 2000, '', 'IB', 'LMN', 2.4, 0, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 2000, '', 'IB', 'LMN', 2.4, 0, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Trade with zero credit amount. Leave credit exchange rate blank.`, 3, 'creditExRate');
@@ -1542,13 +1542,13 @@ function validateLedgerTrade() {
   testValidateLedger('Trade non fiat base non fiat-fiat zero credit amount and credit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Non fiat base trade requires either debit asset (EUR) or credit asset (LMN) to fiat base (USD) exchange rate.`, 3, 'debitExRate');
@@ -1556,13 +1556,13 @@ function validateLedgerTrade() {
   testValidateLedger('Trade non fiat base non fiat-fiat and no debit or credit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 1.2, 2000, '', 'IB', 'LMN', 2.4, 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 1.2, 2000, '', 'IB', 'LMN', 2.4, 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Remove one of the exchange rates.\n\nNon fiat base trade requires either debit asset (EUR) or credit asset (LMN) to fiat base (USD) exchange rate, but not both. One exchange rate can be deduced from the other and the amounts of assets exchanged. The exchange rate of the least volatile, most widely traded asset is likely to be more accurate.`, 3, 'debitExRate');
@@ -1570,13 +1570,13 @@ function validateLedgerTrade() {
   testValidateLedger('Trade non fiat base non fiat-fiat and both debit and credit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', -1.2, 2000, '', 'IB', 'LMN', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', -1.2, 2000, '', 'IB', 'LMN', '', 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Debit exchange rate must be greater than or equal to 0.`, 3, 'debitExRate');
@@ -1584,13 +1584,13 @@ function validateLedgerTrade() {
   testValidateLedger('Trade non fiat base non fiat-fiat and negative debit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 0, 2000, '', 'IB', 'LMN', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 0, 2000, '', 'IB', 'LMN', '', 1000, '', '', '', '')
   ];
 
   validationError = null;
@@ -1598,13 +1598,13 @@ function validateLedgerTrade() {
   testValidateLedger('Trade non fiat base non fiat-fiat and zero debit exrate valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 2000, '', 'IB', 'LMN', -2.4, 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 2000, '', 'IB', 'LMN', -2.4, 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Trade row 3: Credit exchange rate must be greater than or equal to 0.`, 3, 'creditExRate');
@@ -1612,13 +1612,13 @@ function validateLedgerTrade() {
   testValidateLedger('Trade non fiat base non fiat-fiat and negative credit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 2000, '', 'IB', 'LMN', 0, 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', '', 2000, '', 'IB', 'LMN', 0, 1000, '', '', '', '')
   ];
 
   validationError = null;
@@ -1635,12 +1635,12 @@ function validateLedgerIncome() {
   let validationError;
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', 'ADA', 1.2, 1000, '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', 'ADA', 1.2, 1000, '', 'Ledger', '', '')
   ];
 
   validationError = null;
@@ -1648,12 +1648,12 @@ function validateLedgerIncome() {
   testValidateLedger('Income rewards valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', 'EUR', 1.2, 1000, '', 'IB', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', 'EUR', 1.2, 1000, '', 'IB', '', '')
   ];
 
   validationError = null;
@@ -1661,11 +1661,11 @@ function validateLedgerIncome() {
   testValidateLedger('Income fiat interest valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', 'USD', '', 1000, '', 'IB', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', 'USD', '', 1000, '', 'IB', '', '')
   ];
 
   validationError = null;
@@ -1673,15 +1673,15 @@ function validateLedgerIncome() {
   testValidateLedger('Income  fiat base interest valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 1.2, 2000, '', 'IB', 'LMN', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'LMN', '', 1000, '', 'IB', 'EUR', 1.2, 2000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 3), 'Income', 'LMN', '', '', '', '', 'EUR', 1.2, 1000, '', 'IB', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 1.2, 2000, '', 'IB', 'LMN', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'LMN', '', 1000, '', 'IB', 'EUR', 1.2, 2000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 3), 'Income', 'LMN', '', '', '', '', 'EUR', 1.2, 1000, '', 'IB', '', '')
   ];
 
   validationError = null;
@@ -1689,14 +1689,14 @@ function validateLedgerIncome() {
   testValidateLedger('Income fiat dividend valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'LMN', '', 1000, '', 'IB', 'USD', '', 2000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 3), 'Income', 'LMN', '', '', '', '', 'USD', '', 1000, '', 'IB', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'LMN', '', 1000, '', 'IB', 'USD', '', 2000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 3), 'Income', 'LMN', '', '', '', '', 'USD', '', 1000, '', 'IB', '', '')
   ];
 
   validationError = null;
@@ -1704,12 +1704,12 @@ function validateLedgerIncome() {
   testValidateLedger('Income fiat base dividend valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', 1.2, '', '', '', 'ADA', 1.2, 1000, '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', 1.2, '', '', '', 'ADA', 1.2, 1000, '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Income row 3: Leave debit exchange rate blank.`, 3, 'debitExRate');
@@ -1717,12 +1717,12 @@ function validateLedgerIncome() {
   testValidateLedger('Income debit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', 1000, '', '', 'ADA', 1.2, 1000, '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', 1000, '', '', 'ADA', 1.2, 1000, '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Income row 3: Leave debit amount blank.`, 3, 'debitAmount');
@@ -1730,12 +1730,12 @@ function validateLedgerIncome() {
   testValidateLedger('Income debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', 10, '', 'ADA', 1.2, 1000, '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', 10, '', 'ADA', 1.2, 1000, '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Income row 3: Leave debit fee blank.`, 3, 'debitFee');
@@ -1743,12 +1743,12 @@ function validateLedgerIncome() {
   testValidateLedger('Income debit fee', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', 'IB', 'ADA', 1.2, 1000, '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', 'IB', 'ADA', 1.2, 1000, '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Income row 3: Leave debit wallet (IB) blank.`, 3, 'debitWalletName');
@@ -1756,12 +1756,12 @@ function validateLedgerIncome() {
   testValidateLedger('Income debit wallet', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', '', 1.2, 1000, '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', '', 1.2, 1000, '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Income row 3: No credit asset specified.`, 3, 'creditAsset');
@@ -1769,14 +1769,14 @@ function validateLedgerIncome() {
   testValidateLedger('Income no credit asset', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'LMN', '', 1000, '', 'IB', 'USD', '', 2000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 3), 'Income', 'LMN', '', '', '', '', 'USD', 1.2, 1000, '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Trade', 'LMN', '', 1000, '', 'IB', 'USD', '', 2000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 3), 'Income', 'LMN', '', '', '', '', 'USD', 1.2, 1000, '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Income row 5: Leave credit exchange rate blank when credit asset is fiat base (USD).`, 5, 'creditExRate');
@@ -1784,12 +1784,12 @@ function validateLedgerIncome() {
   testValidateLedger('Income credit asset is fiat base and credit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', 'ADA', '', 1000, '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', 'ADA', '', 1000, '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Income row 3: Missing credit asset (ADA) to fiat base (USD) exchange rate.`, 3, 'creditExRate');
@@ -1797,12 +1797,12 @@ function validateLedgerIncome() {
   testValidateLedger('Income credit asset not fiat base and no credit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', 'ADA', -1.2, 1000, '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', 'ADA', -1.2, 1000, '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Income row 3: Credit exchange rate must be greater than or equal to 0.`, 3, 'creditExRate');
@@ -1810,12 +1810,12 @@ function validateLedgerIncome() {
   testValidateLedger('Income credit asset not fiat base and negative credit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', 'ADA', 0, 1000, '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', 'ADA', 0, 1000, '', 'Ledger', '', '')
   ];
 
   validationError = null;
@@ -1823,12 +1823,12 @@ function validateLedgerIncome() {
   testValidateLedger('Income credit asset not fiat base and zero credit exrate valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', 'ADA', 1.2, '', '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', 'ADA', 1.2, '', '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Income row 3: No credit amount specified.`, 3, 'creditAmount');
@@ -1836,12 +1836,12 @@ function validateLedgerIncome() {
   testValidateLedger('Income no credit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', 'ADA', 1.2, -1000, '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', 'ADA', 1.2, -1000, '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Income row 3: Credit amount must be greater than 0.`, 3, 'creditAmount');
@@ -1849,12 +1849,12 @@ function validateLedgerIncome() {
   testValidateLedger('Income negative credit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', 'ADA', 1.2, 0, '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', 'ADA', 1.2, 0, '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Income row 3: Credit amount must be greater than 0.`, 3, 'creditAmount');
@@ -1862,12 +1862,12 @@ function validateLedgerIncome() {
   testValidateLedger('Income zero credit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', 'ADA', 1.2, 1000, 10, 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', 'ADA', 1.2, 1000, 10, 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Income row 3: Leave credit fee blank.`, 3, 'creditFee');
@@ -1875,12 +1875,12 @@ function validateLedgerIncome() {
   testValidateLedger('Income credit fee', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', 'ADA', 1.2, 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Income', '', '', '', '', '', 'ADA', 1.2, 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Income row 3: No credit wallet specified.`, 3, 'creditWalletName');
@@ -1897,13 +1897,13 @@ function validateLedgerDonation() {
   let validationError;
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', '1.2', 990, 10, 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', '1.2', 990, 10, 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = null;
@@ -1911,13 +1911,13 @@ function validateLedgerDonation() {
   testValidateLedger('Donation with fee valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', '1.2', 1000, '', 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', '1.2', 1000, '', 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = null;
@@ -1925,13 +1925,13 @@ function validateLedgerDonation() {
   testValidateLedger('Donation no fee valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Donation', '', '1.2', 1000, '', 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Donation', '', '1.2', 1000, '', 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Donation row 4: No debit asset specified.`, 4, 'debitAsset');
@@ -1939,12 +1939,12 @@ function validateLedgerDonation() {
   testValidateLedger('Donation no debit asset', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'EUR', '1.2', 1000, '', 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'EUR', '1.2', 1000, '', 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Donation row 3: Debit asset (EUR) is fiat, not supported.`, 3, 'debitAsset');
@@ -1952,13 +1952,13 @@ function validateLedgerDonation() {
   testValidateLedger('Donation debit asset fiat', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', '', 1000, '', 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', '', 1000, '', 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Donation row 4: Missing debit asset (ADA) to fiat base (USD) exchange rate.`, 4, 'debitExRate');
@@ -1966,13 +1966,13 @@ function validateLedgerDonation() {
   testValidateLedger('Donation no debit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', -1.2, 1000, '', 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', -1.2, 1000, '', 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Donation row 4: Debit exchange rate must be greater than or equal to 0.`, 4, 'debitExRate');
@@ -1980,13 +1980,13 @@ function validateLedgerDonation() {
   testValidateLedger('Donation negative debit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 0, 1000, '', 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 0, 1000, '', 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = null;
@@ -1994,13 +1994,13 @@ function validateLedgerDonation() {
   testValidateLedger('Donation zero debit exrate valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 1.2, '', '', 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 1.2, '', '', 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Donation row 4: No debit amount specified.`, 4, 'debitAmount');
@@ -2008,13 +2008,13 @@ function validateLedgerDonation() {
   testValidateLedger('Donation no debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 1.2, -1000, '', 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 1.2, -1000, '', 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Donation row 4: Debit amount must be greater than 0.`, 4, 'debitAmount');
@@ -2022,13 +2022,13 @@ function validateLedgerDonation() {
   testValidateLedger('Donation negative debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 1.2, 0, '', 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 1.2, 0, '', 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Donation row 4: Debit amount must be greater than 0.`, 4, 'debitAmount');
@@ -2036,13 +2036,13 @@ function validateLedgerDonation() {
   testValidateLedger('Donation zero debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 1.2, 1000, -10, 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 1.2, 1000, -10, 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Donation row 4: Debit fee must be greater than or equal to 0 (or blank).`, 4, 'debitFee');
@@ -2050,13 +2050,13 @@ function validateLedgerDonation() {
   testValidateLedger('Donation negative debit fee', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 1.2, 1000, 0, 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 1.2, 1000, 0, 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = null;
@@ -2064,13 +2064,13 @@ function validateLedgerDonation() {
   testValidateLedger('Donation zero debit fee valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 1.2, 1000, '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 1.2, 1000, '', '', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Donation row 4: No debit wallet specified.`, 4, 'debitWalletName');
@@ -2078,14 +2078,14 @@ function validateLedgerDonation() {
   testValidateLedger('Donation no debit wallet', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', ''),
-    new AssetRecord('BTC', 'Crypto', 8, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', ''),
+    new AssetRecord('BTC', 'Crypto', 8, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 1.2, 1000, '', 'Kraken', 'BTC', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 1.2, 1000, '', 'Kraken', 'BTC', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Donation row 4: Leave credit asset (BTC) blank.`, 4, 'creditAsset');
@@ -2093,13 +2093,13 @@ function validateLedgerDonation() {
   testValidateLedger('Donation credit asset', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 1.2, 1000, '', 'Kraken', '', 1.2, '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 1.2, 1000, '', 'Kraken', '', 1.2, '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Donation row 4: Leave credit exchange rate blank.`, 4, 'creditExRate');
@@ -2107,13 +2107,13 @@ function validateLedgerDonation() {
   testValidateLedger('Donation credit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 1.2, 1000, '', 'Kraken', '', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 1.2, 1000, '', 'Kraken', '', '', 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Donation row 4: Leave credit amount blank.`, 4, 'creditAmount');
@@ -2121,13 +2121,13 @@ function validateLedgerDonation() {
   testValidateLedger('Donation credit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 1.2, 1000, '', 'Kraken', '', '', '', 10, '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 1.2, 1000, '', 'Kraken', '', '', '', 10, '', '', '')
   ];
 
   validationError = new ValidationError(`Donation row 4: Leave credit fee blank.`, 4, 'creditFee');
@@ -2135,13 +2135,13 @@ function validateLedgerDonation() {
   testValidateLedger('Donation credit fee', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 1.2, 1000, '', 'Kraken', '', '', '', '', 'IB', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Donation', 'ADA', 1.2, 1000, '', 'Kraken', '', '', '', '', 'IB', '', '')
   ];
 
   validationError = new ValidationError(`Donation row 4: Leave credit wallet (IB) blank.`, 4, 'creditWalletName');
@@ -2158,13 +2158,13 @@ function validateLedgerGift() {
   let validationError;
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1010, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', 1.2, 1000, 10, 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1010, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', 1.2, 1000, 10, 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = null;
@@ -2172,13 +2172,13 @@ function validateLedgerGift() {
   testValidateLedger('Gift given with fee valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', 1.2, 1000, '', 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', 1.2, 1000, '', 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = null;
@@ -2186,12 +2186,12 @@ function validateLedgerGift() {
   testValidateLedger('Gift given no fee valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'USD', '', 1200, '', '', 'ADA', '', 1000, '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'USD', '', 1200, '', '', 'ADA', '', 1000, '', 'Ledger', '', '')
   ];
 
   validationError = null;
@@ -2199,13 +2199,13 @@ function validateLedgerGift() {
   testValidateLedger('Gift received valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Gift', '', '', 1000, '', 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Gift', '', '', 1000, '', 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Gift row 4: No debit asset specified.\n\nFor gifts given debit asset is the asset given.\n\nFor gifts received debit asset must be fiat base (USD) for the inherited cost basis.`, 4, 'debitAsset');
@@ -2213,13 +2213,13 @@ function validateLedgerGift() {
   testValidateLedger('Gift no debit asset', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', '', 1000, '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', '', 1000, '', '', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Gift row 4: Either debit wallet (for gifts given) or credit wallet (for gifts received) must be specified.`, 4, 'debitWalletName');
@@ -2227,13 +2227,13 @@ function validateLedgerGift() {
   testValidateLedger('Gift no debit or credit wallet', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', '', 1000, '', 'Kraken', '', '', '', '', 'IB', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', '', 1000, '', 'Kraken', '', '', '', '', 'IB', '', '')
   ];
 
   validationError = new ValidationError(`Gift row 4: Either debit wallet (for gifts given) or credit wallet (for gifts received) must be specified, but not both.`, 4, 'debitWalletName');
@@ -2241,13 +2241,13 @@ function validateLedgerGift() {
   testValidateLedger('Gift both debit and credit wallet', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', 1.2, 1000, -10, 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', 1.2, 1000, -10, 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Gift row 4: Debit fee must be greater than or equal to 0 (or blank).`, 4, 'debitFee');
@@ -2255,13 +2255,13 @@ function validateLedgerGift() {
   testValidateLedger('Gift negative debit fee', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', 1.2, 1000, 0, 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', 1.2, 1000, 0, 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = null;
@@ -2269,13 +2269,13 @@ function validateLedgerGift() {
   testValidateLedger('Gift zero debit fee valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', 1.2, 1000, '', 'Kraken', '', 1.2, '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', 1.2, 1000, '', 'Kraken', '', 1.2, '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Gift row 4: Leave credit exchange rate blank.`, 4, 'creditExRate');
@@ -2283,12 +2283,12 @@ function validateLedgerGift() {
   testValidateLedger('Gift credit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'USD', '', 1200, '', '', 'ADA', '', 1000, 10, 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'USD', '', 1200, '', '', 'ADA', '', 1000, 10, 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Gift row 3: Leave credit fee blank.`, 3, 'creditFee');
@@ -2296,12 +2296,12 @@ function validateLedgerGift() {
   testValidateLedger('Gift credit fee', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'EUR', 1.2, 1000, '', 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'EUR', 1.2, 1000, '', 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Gift row 3: Debit asset EUR is fiat. Not supported for gifts given. Use transfer action instead.`, 3, 'debitAsset');
@@ -2309,13 +2309,13 @@ function validateLedgerGift() {
   testValidateLedger('Gift given debit asset fiat', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', '', 1000, '', 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', '', 1000, '', 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Gift row 4: For gifts given, debit asset (ADA) to fiat base (USD) exchange rate must be specified.`, 4, 'debitExRate');
@@ -2323,13 +2323,13 @@ function validateLedgerGift() {
   testValidateLedger('Gift given no debit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', -1.2, 1000, '', 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', -1.2, 1000, '', 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Gift row 4: For gifts given, debit exchange rate must be greater than or equal to 0.`, 4, 'debitExRate');
@@ -2337,13 +2337,13 @@ function validateLedgerGift() {
   testValidateLedger('Gift given negative debit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', 0, 1000, '', 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', 0, 1000, '', 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = null;
@@ -2351,13 +2351,13 @@ function validateLedgerGift() {
   testValidateLedger('Gift given zero debit exrate valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', 1.2, '', '', 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', 1.2, '', '', 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Gift row 4: For gifts given, debit amount must be specified.`, 4, 'debitAmount');
@@ -2365,13 +2365,13 @@ function validateLedgerGift() {
   testValidateLedger('Gift given no debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', 1.2, -1000, '', 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', 1.2, -1000, '', 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Gift row 4: For gifts given, debit amount must be greater than 0.`, 4, 'debitAmount');
@@ -2379,13 +2379,13 @@ function validateLedgerGift() {
   testValidateLedger('Gift given negative debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', 1.2, 0, '', 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', 1.2, 0, '', 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Gift row 4: For gifts given, debit amount must be greater than 0.`, 4, 'debitAmount');
@@ -2393,13 +2393,13 @@ function validateLedgerGift() {
   testValidateLedger('Gift given zero debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', 1.2, 1000, '', 'Kraken', 'ADA', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', 1.2, 1000, '', 'Kraken', 'ADA', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Gift row 4: For gifts given, leave credit asset (ADA) blank.`, 4, 'creditAsset');
@@ -2407,13 +2407,13 @@ function validateLedgerGift() {
   testValidateLedger('Gift given credit asset', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', 1.2, 1000, '', 'Kraken', '', '', 1000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Gift', 'ADA', 1.2, 1000, '', 'Kraken', '', '', 1000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Gift row 4: For gifts given, leave credit amount blank.`, 4, 'creditAmount');
@@ -2421,13 +2421,13 @@ function validateLedgerGift() {
   testValidateLedger('Gift given credit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'EUR', '', 1000, '', '', 'ADA', '', 1000, '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'EUR', '', 1000, '', '', 'ADA', '', 1000, '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Gift row 3: For gifts received, debit asset must be fiat base (for the inherited cost basis).`, 3, 'debitAsset');
@@ -2435,12 +2435,12 @@ function validateLedgerGift() {
   testValidateLedger('Gift received debit asset not fiat base', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'USD', '', '', '', '', 'ADA', '', 1000, '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'USD', '', '', '', '', 'ADA', '', 1000, '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Gift row 3: For gifts received, debit amount must be specified (for the inherited cost basis).`, 3, 'debitAmount');
@@ -2448,12 +2448,12 @@ function validateLedgerGift() {
   testValidateLedger('Gift received no debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'USD', '', -1200, '', '', 'ADA', '', 1000, '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'USD', '', -1200, '', '', 'ADA', '', 1000, '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Gift row 3: For gifts received, debit amount must be greater than or equal to 0 (for the inherited cost basis).`, 3, 'debitAmount');
@@ -2461,12 +2461,12 @@ function validateLedgerGift() {
   testValidateLedger('Gift received negative debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'USD', '', 0, '', '', 'ADA', '', 1000, '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'USD', '', 0, '', '', 'ADA', '', 1000, '', 'Ledger', '', '')
   ];
 
   validationError = null;
@@ -2474,12 +2474,12 @@ function validateLedgerGift() {
   testValidateLedger('Gift received zero debit amount valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'USD', '', 1200, '', '', '', '', 1000, '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'USD', '', 1200, '', '', '', '', 1000, '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Gift row 3: For gifts received, credit asset must be specified.`, 3, 'creditAsset');
@@ -2487,12 +2487,12 @@ function validateLedgerGift() {
   testValidateLedger('Gift received no credit asset', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'USD', '', 1200, '', '', 'EUR', '', 1000, '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'USD', '', 1200, '', '', 'EUR', '', 1000, '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Gift row 3: Credit asset EUR is fiat. Not supported for gifts received. Use transfer action instead.`, 3, 'creditAsset');
@@ -2500,12 +2500,12 @@ function validateLedgerGift() {
   testValidateLedger('Gift received credit asset fiat', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'USD', '', 1200, '', '', 'ADA', '', '', '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'USD', '', 1200, '', '', 'ADA', '', '', '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Gift row 3: For gifts received, credit amount must be specified.`, 3, 'creditAmount');
@@ -2513,12 +2513,12 @@ function validateLedgerGift() {
   testValidateLedger('Gift received no credit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'USD', '', 1200, '', '', 'ADA', '', -1000, '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'USD', '', 1200, '', '', 'ADA', '', -1000, '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Gift row 3: For gifts received, credit amount must be greater than 0.`, 3, 'creditAmount');
@@ -2526,12 +2526,12 @@ function validateLedgerGift() {
   testValidateLedger('Gift received negative credit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'USD', '', 1200, '', '', 'ADA', '', 0, '', 'Ledger', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Gift', 'USD', '', 1200, '', '', 'ADA', '', 0, '', 'Ledger', '', '')
   ];
 
   validationError = new ValidationError(`Gift row 3: For gifts received, credit amount must be greater than 0.`, 3, 'creditAmount');
@@ -2548,11 +2548,11 @@ function validateLedgerFee() {
   let validationError;
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Fee', 'USD', '', '', 10, 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Fee', 'USD', '', '', 10, 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = null;
@@ -2560,12 +2560,12 @@ function validateLedgerFee() {
   testValidateLedger('Fee fiat base valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Fee', 'EUR', '', '', 10, 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Fee', 'EUR', '', '', 10, 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = null;
@@ -2573,13 +2573,13 @@ function validateLedgerFee() {
   testValidateLedger('Fee fiat valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', '', 10, 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', '', 10, 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = null;
@@ -2587,12 +2587,12 @@ function validateLedgerFee() {
   testValidateLedger('Fee asset valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Fee', '', '', '', 10, 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Fee', '', '', '', 10, 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Fee row 3: No debit asset specified.`, 3, 'debitAsset');
@@ -2600,13 +2600,13 @@ function validateLedgerFee() {
   testValidateLedger('Fee no debit asset', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', 1.2, '', 10, 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', 1.2, '', 10, 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Fee row 4: Leave debit exchange rate blank.`, 4, 'debitExRate');
@@ -2614,13 +2614,13 @@ function validateLedgerFee() {
   testValidateLedger('Fee debit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', 20, 10, 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', 20, 10, 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Fee row 4: Leave debit amount blank.`, 4, 'debitAmount');
@@ -2628,13 +2628,13 @@ function validateLedgerFee() {
   testValidateLedger('Fee debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', '', '', 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', '', '', 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Fee row 4: No debit fee specified.`, 4, 'debitFee');
@@ -2642,13 +2642,13 @@ function validateLedgerFee() {
   testValidateLedger('Fee no debit fee', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', '', -10, 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', '', -10, 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Fee row 4: Debit fee must be greater than 0.`, 4, 'debitFee');
@@ -2656,13 +2656,13 @@ function validateLedgerFee() {
   testValidateLedger('Fee negative debit fee', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', '', 0, 'Kraken', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', '', 0, 'Kraken', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Fee row 4: Debit fee must be greater than 0.`, 4, 'debitFee');
@@ -2670,13 +2670,13 @@ function validateLedgerFee() {
   testValidateLedger('Fee zero debit fee', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', '', 10, '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', '', 10, '', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Fee row 4: No debit wallet specified.`, 4, 'debitWalletName');
@@ -2684,14 +2684,14 @@ function validateLedgerFee() {
   testValidateLedger('Fee no debit wallet', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', '', 10, 'Kraken', 'EUR', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', '', 10, 'Kraken', 'EUR', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Fee row 4: Leave credit asset (EUR) blank.`, 4, 'creditAsset');
@@ -2699,13 +2699,13 @@ function validateLedgerFee() {
   testValidateLedger('Fee credit asset', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', '', 10, 'Kraken', '', 1.2, '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', '', 10, 'Kraken', '', 1.2, '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Fee row 4: Leave credit exchange rate blank.`, 4, 'creditExRate');
@@ -2713,13 +2713,13 @@ function validateLedgerFee() {
   testValidateLedger('Fee credit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', '', 10, 'Kraken', '', '', 10, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', '', 10, 'Kraken', '', '', 10, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Fee row 4: Leave credit amount blank.`, 4, 'creditAmount');
@@ -2727,13 +2727,13 @@ function validateLedgerFee() {
   testValidateLedger('Fee credit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', '', 10, 'Kraken', '', '', '', 10, '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', '', 10, 'Kraken', '', '', '', 10, '', '', '')
   ];
 
   validationError = new ValidationError(`Fee row 4: Leave credit fee blank.`, 4, 'creditFee');
@@ -2741,13 +2741,13 @@ function validateLedgerFee() {
   testValidateLedger('Fee credit fee', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('ADA', 'Crypto', 6, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', '', 10, 'Kraken', '', '', '', '', 'IB', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Fee', 'ADA', '', '', 10, 'Kraken', '', '', '', '', 'IB', '', '')
   ];
 
   validationError = new ValidationError(`Fee row 4: Leave credit wallet (IB) blank.`, 4, 'creditWalletName');
@@ -2764,13 +2764,13 @@ function validateLedgerAdjust() {
   let validationError;
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 750, '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 750, '', '', '', '', '', '', '', '', '')
   ];
 
   validationError = null;
@@ -2778,13 +2778,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust reverse split no wallet valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 750, '', 'IB', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 750, '', 'IB', '', '', '', '', '', '', '')
   ];
 
   validationError = null;
@@ -2792,13 +2792,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust reverse split with wallet valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'LMN', '', 3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'LMN', '', 3000, '', '', '', '')
   ];
 
   validationError = null;
@@ -2806,13 +2806,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust forward split no wallet valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'LMN', '', 3000, '', 'IB', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'LMN', '', 3000, '', 'IB', '', '')
   ];
 
   validationError = null;
@@ -2820,13 +2820,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust forward split with wallet valid', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 750, '', '', 'LMN', '', 3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 750, '', '', 'LMN', '', 3000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'debitAsset');
@@ -2834,13 +2834,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✓✓✓✓ debit asset column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', '', '', '', 'LMN', '', 3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', '', '', '', 'LMN', '', 3000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'debitAsset');
@@ -2848,13 +2848,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✓✗✓✓ debit asset column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', '', '', '', 'LMN', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', '', '', '', 'LMN', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'debitAsset');
@@ -2862,13 +2862,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✓✗✓✗ debit asset column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', '', '', '', '', '', 3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', '', '', '', '', '', 3000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'debitAsset');
@@ -2876,13 +2876,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✓✗✗✓ debit asset column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '750', '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '750', '', '', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'debitAsset');
@@ -2890,13 +2890,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✗✓✗✗ debit asset column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'debitAsset');
@@ -2904,13 +2904,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✗✗✗✗ debit asset column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', '', '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', '', '', '', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'debitAmount');
@@ -2918,13 +2918,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✓✗✗✗ debit amount column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', 750, '', '', 'LMN', '', 3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', 750, '', '', 'LMN', '', 3000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'debitAmount');
@@ -2932,13 +2932,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✗✓✓✓ debit amount column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', 750, '', '', 'LMN', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', 750, '', '', 'LMN', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'debitAmount');
@@ -2946,13 +2946,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✗✓✓✗ debit amount column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', 750, '', '', '', '', 3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', 750, '', '', '', '', 3000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'debitAmount');
@@ -2960,13 +2960,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✗✓✗✓ debit amount column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 750, '', '', 'LMN', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 750, '', '', 'LMN', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'creditAsset');
@@ -2974,13 +2974,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✓✓✓✗ credit asset column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', '', '', 3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', '', '', 3000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'creditAsset');
@@ -2988,13 +2988,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✗✗✗✓ credit asset column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 750, '', '', '', '', 3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 750, '', '', '', '', 3000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'creditAmount');
@@ -3002,13 +3002,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✓✓✗✓ credit amount column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'LMN', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'LMN', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Either enter debit asset and debit amount to decrease the amount held (reverse split) or credit asset and credit amount to increase the amount held (foward split).`, 4, 'creditAmount');
@@ -3016,14 +3016,14 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust debit asset, debit amount, credit asset, credit amount ✗✗✓✗ credit amount column', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'EUR', '', 750, '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'EUR', '', 750, '', '', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Debit asset (EUR) is fiat, not supported.`, 4, 'debitAsset');
@@ -3031,13 +3031,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust debit asset fiat', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', 2, 750, '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', 2, 750, '', '', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Leave debit exchange rate blank.`, 4, 'debitExRate');
@@ -3045,13 +3045,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust debit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', -750, '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', -750, '', '', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Debit amount must be greater than 0.`, 4, 'debitAmount');
@@ -3059,13 +3059,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust negative debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 0, '', '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 0, '', '', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Debit amount must be greater than 0.`, 4, 'debitAmount');
@@ -3073,13 +3073,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust zero debit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 750, 10, '', '', '', '', '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 750, 10, '', '', '', '', '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Leave debit fee blank.`, 4, 'debitFee');
@@ -3087,13 +3087,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust debit fee', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', 'IB', 'LMN', '', 3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', 'IB', 'LMN', '', 3000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: To increase the amount held (foward split) leave debit wallet (IB) blank.`, 4, 'debitWalletName');
@@ -3101,14 +3101,14 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust foward split debit wallet', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('EUR', 'Fiat', 2, '', '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('EUR', 'Fiat', 2, '', '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'EUR', '', 3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'EUR', '', 3000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Credit asset (EUR) is fiat, not supported.`, 4, 'creditAsset');
@@ -3116,13 +3116,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust credit asset fiat', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'LMN', 2, 3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'LMN', 2, 3000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Leave credit exchange rate blank.`, 4, 'creditExRate');
@@ -3130,13 +3130,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust credit exrate', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'LMN', '', -3000, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'LMN', '', -3000, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Credit amount must be greater than 0.`, 4, 'creditAmount');
@@ -3144,13 +3144,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust negative credit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'LMN', '', 0, '', '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'LMN', '', 0, '', '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Credit amount must be greater than 0.`, 4, 'creditAmount');
@@ -3158,13 +3158,13 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust zero credit amount', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'LMN', '', 3000, 10, '', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', '', '', '', '', '', 'LMN', '', 3000, 10, '', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: Leave credit fee blank.`, 4, 'creditFee');
@@ -3172,16 +3172,181 @@ function validateLedgerAdjust() {
   testValidateLedger('Adjust credit fee', assetRecords, ledgerRecords, validationError);
 
   assetRecords = [
-    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', ''),
-    new AssetRecord('LMN', 'Stock', 0, '', '', '', '')
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', ''),
+    new AssetRecord('LMN', 'Stock', 0, '', '', '', '', '')
   ];
 
   ledgerRecords = [
-    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', ''),
-    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 750, '', '', '', '', '', '', 'IB', '')
+    new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 2000, '', 'IB', 'LMN', '', 1000, 0, '', '', ''),
+    new LedgerRecord(new Date(2020, 3, 2), 'Adjust', 'LMN', '', 750, '', '', '', '', '', '', 'IB', '', '')
   ];
 
   validationError = new ValidationError(`Adjust row 4: To decrease the amount held (reverse split) leave credit wallet (IB) blank.`, 4, 'creditWalletName');
 
   testValidateLedger('Adjust reverse split credit wallet', assetRecords, ledgerRecords, validationError);
+}
+
+function validateLedgerInflation() {
+
+  QUnit.module('Validate Ledger Inflation');
+
+  let assetRecords;
+  let ledgerRecords;
+  let validationError;
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', '')
+  ];
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Inflation', '', '', '', '', '', '', '', 100, '', '', '', '')
+  ];
+
+  validationError = null;
+
+  testValidateLedger('Inflation valid', assetRecords, ledgerRecords, validationError);
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', '')
+  ];
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Inflation', 'USD', '', '', '', '', '', '', 100, '', '', '', '')
+  ];
+
+  validationError = new ValidationError(`Inflation row 3: Leave debit asset (USD) blank.`, 3, 'debitAsset');
+
+  testValidateLedger('Inflation debit asset', assetRecords, ledgerRecords, validationError);
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', '')
+  ];
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Inflation', '', 1.2, '', '', '', '', '', 100, '', '', '', '')
+  ];
+
+  validationError = new ValidationError(`Inflation row 3: Leave debit exchange rate blank.`, 3, 'debitExRate');
+
+  testValidateLedger('Inflation debit exrate', assetRecords, ledgerRecords, validationError);
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', '')
+  ];
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Inflation', '', '', 100, '', '', '', '', 100, '', '', '', '')
+  ];
+
+  validationError = new ValidationError(`Inflation row 3: Leave debit amount blank.`, 3, 'debitAmount');
+
+  testValidateLedger('Inflation debit amount', assetRecords, ledgerRecords, validationError);
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', '')
+  ];
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Inflation', '', '', '', 10, '', '', '', 100, '', '', '', '')
+  ];
+
+  validationError = new ValidationError(`Inflation row 3: Leave debit fee blank.`, 3, 'debitFee');
+
+  testValidateLedger('Inflation debit fee', assetRecords, ledgerRecords, validationError);
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', '')
+  ];
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Inflation', '', '', '', '', 'IB', '', '', 100, '', '', '', '')
+  ];
+
+  validationError = new ValidationError(`Inflation row 3: Leave debit wallet (IB) blank.`, 3, 'debitWalletName');
+
+  testValidateLedger('Inflation debit wallet', assetRecords, ledgerRecords, validationError);
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', '')
+  ];
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Inflation', '', '', '', '', '', 'USD', '', 100, '', '', '', '')
+  ];
+
+  validationError = new ValidationError(`Inflation row 3: Leave credit asset (USD) blank.`, 3, 'creditAsset');
+
+  testValidateLedger('Inflation credit asset', assetRecords, ledgerRecords, validationError);
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', '')
+  ];
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Inflation', '', '', '', '', '', '', 1.2, 100, '', '', '', '')
+  ];
+
+  validationError = new ValidationError(`Inflation row 3: Leave credit exchange rate blank.`, 3, 'creditExRate');
+
+  testValidateLedger('Inflation credit exrate', assetRecords, ledgerRecords, validationError);
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', '')
+  ];
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Inflation', '', '', '', '', '', '', '', '', '', '', '', '')
+  ];
+
+  validationError = new ValidationError(`Inflation row 3: No credit amount specified.`, 3, 'creditAmount');
+
+  testValidateLedger('Inflation no credit amount', assetRecords, ledgerRecords, validationError);
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', '')
+  ];
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Inflation', '', '', '', '', '', '', '', 0, '', '', '', '')
+  ];
+
+  validationError = new ValidationError(`Inflation row 3: Credit amount must be greater than 0.`, 3, 'creditAmount');
+
+  testValidateLedger('Inflation zero credit amount', assetRecords, ledgerRecords, validationError);
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', '')
+  ];
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Inflation', '', '', '', '', '', '', '', -100, '', '', '', '')
+  ];
+
+  validationError = new ValidationError(`Inflation row 3: Credit amount must be greater than 0.`, 3, 'creditAmount');
+
+  testValidateLedger('Inflation negative credit amount', assetRecords, ledgerRecords, validationError);
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', '')
+  ];
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Inflation', '', '', '', '', '', '', '', 100, 10, '', '', '')
+  ];
+
+  validationError = new ValidationError(`Inflation row 3: Leave credit fee blank.`, 3, 'creditFee');
+
+  testValidateLedger('Inflation credit fee', assetRecords, ledgerRecords, validationError);
+
+  assetRecords = [
+    new AssetRecord('USD', 'Fiat Base', 2, 1, '', '', '', '')
+  ];
+
+  ledgerRecords = [
+    new LedgerRecord(new Date(2020, 3, 1), 'Inflation', '', '', '', '', '', '', '', 100, '', 'IB', '', '')
+  ];
+
+  validationError = new ValidationError(`Inflation row 3: Leave credit wallet (IB) blank.`, 3, 'creditWalletName');
+
+  testValidateLedger('Inflation credit wallet', assetRecords, ledgerRecords, validationError);
 }
