@@ -432,7 +432,6 @@ function processLedgerTradeNoFees() {
   let eur = new Asset('EUR', 'Fiat', false, 2, 3);
   let gbp = new Asset('GBP', 'Fiat', false, 2, 4);
   let ada = new Asset('ADA', 'Crypto', false, 6, 5);
-  let algo = new Asset('ALGO', 'Crypto', false, 8, 6);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, '', 'Kraken', 'ADA', '', 1000, '', '', '', '')
@@ -593,7 +592,6 @@ function processLedgerTradeWithFees() {
   let eur = new Asset('EUR', 'Fiat', false, 2, 3);
   let gbp = new Asset('GBP', 'Fiat', false, 2, 4);
   let ada = new Asset('ADA', 'Crypto', false, 6, 5);
-  let algo = new Asset('ALGO', 'Crypto', false, 8, 6);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'USD', '', 1200, 10, 'Kraken', 'ADA', '', 1000, 10, '', '', '')
@@ -1017,7 +1015,6 @@ function processLedgerTradeZeroExRate() {
   let usd = new Asset('USD', 'Fiat', true, 2, 2);
   let eur = new Asset('EUR', 'Fiat', false, 2, 3);
   let ada = new Asset('ADA', 'Crypto', false, 6, 4);
-  let algo = new Asset('ALGO', 'Crypto', false, 8, 5);
 
   ledgerRecords = [
     new LedgerRecord(new Date(2020, 3, 1), 'Trade', 'EUR', 0, 1200, 10, 'Kraken', 'ADA', '', 1000, 10, '', '', '')
